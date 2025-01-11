@@ -7,7 +7,8 @@ import Footer from './Footer/Footer';
 import Container from './Container/Container';
 import Card from './Card/Card';
 import CardSlide from './Card/CardSlide';
-
+import Input from './Input';
+import Button from './Button'
 
 export {
     CarousalSlider,
@@ -19,4 +20,6 @@ export {
     Container,
     Card,
     CardSlide,
+    Input,
+    Button,
 }
