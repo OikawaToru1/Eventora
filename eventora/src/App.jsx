@@ -24,13 +24,18 @@ function App() {
             <CarousalSlider slides={slides} CarouselTitle='Discover Unforgettable Events' CarouselDescrip='A place where experiences come to life' />
         
       </div>
-      <Container className=''>
+      <Container className='w-[100%] mt-12 lg:mt-20 '>
       <Title text={"Explore event that matches your vibe!!"}/>
       <ExploreOptions/>
       </Container>
 
-      <Container>
+      <Container className='mt-16'>
         <Title text={"Discover Events"}/>
+        <CardSlide/>
+      </Container>
+
+      <Container className=''>
+        <Title text={"Events for You"}/>
         <CardSlide/>
       </Container>
       
