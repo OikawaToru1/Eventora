@@ -2,7 +2,7 @@ import React from 'react'
 
 function Title({text}) {
   return (
-    <div className='h-10 text-4xl m-5'>
+    <div className=' text-4xl lg:text-[44px] m-7 leading-tight lg:ml-10  '>
         {
             text
         }
