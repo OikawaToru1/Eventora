@@ -3,7 +3,8 @@ import holidayImage from './holidays.png'
 import hobbieImage from './hobbies.png'
 import businessImage from './business.png'
 import nightlifeImage from './nightlife.png'
- 
+import culturalImage from './cultural.png'
+import exhibitionImage from './exhibition.png'
 
 const IconsData = [
     {
@@ -33,13 +34,13 @@ const IconsData = [
     },
     {
         id:crypto.randomUUID(),
-        IconImage:musicImage,
-        title:'Music',
+        IconImage:culturalImage,
+        title:'Cultural Events',
     },
     {
         id:crypto.randomUUID(),
-        IconImage:holidayImage,
-        title:'Holidays',
+        IconImage:exhibitionImage,
+        title:'Exhibition',
     },
     {
         id:crypto.randomUUID(),
