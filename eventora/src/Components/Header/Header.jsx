@@ -9,7 +9,7 @@ function Header() {
  
 
     return (
-        <div className='header sticky top-0 py-4 flex h-18 w-[100%] justify-between px-6 qitems-center  z-30 bg-white text-[19px]'>
+        <div className='header sticky top-0 py-2 flex h-18 w-[100%] justify-between px-6 qitems-center  z-30 bg-white text-[19px]'>
             <h1 className=' xl:pl-6 lg:pl-3 xl:text-[21px] '>Eventora</h1>
 
             <div className='search-box flex justify-between items-center border-black border-[1px] rounded-[18px]  text-[20px] py-[8px] md:w-[390px] xl:w-[510px]'>
