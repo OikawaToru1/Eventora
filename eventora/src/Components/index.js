@@ -9,6 +9,10 @@ import Card from './Card/Card';
 import CardSlide from './Card/CardSlide';
 import Input from './Input';
 import Button from './Button'
+import AuthLayout from './AuthLayout'
+import Login from './Login'
+import Signup from './Signup'
+import Home from './Home';
 
 
 
@@ -24,4 +28,8 @@ export {
     CardSlide,
     Input,
     Button,
+    AuthLayout,
+    Login,
+    Signup,
+    Home,
 }
