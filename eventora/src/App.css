@@ -3,11 +3,11 @@
   padding: 0;
 }
 
-.underlineGray, .underlineRed {
+.underlineGray, .underlineRed , .underlineGreen {
   position: relative;
   overflow: hidden;
 }
-.underlineGray:after , .underlineRed:after {
+.underlineGray:after , .underlineRed:after,.underlineGreen:after {
   content: "";
   position: absolute;
   z-index: 1;
@@ -26,6 +26,20 @@
 }
 .underlineRed:hover:after{
   right:0;
-  background: #f50606;
+  background: #f50606; 
+}
+.underlineGreen:hover:after{
+  right:0;
+  background: #16a34a; 
+}
+
+.signup-background{
+  background-image: url(./assets/background-gate2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100vw;
+  height: 100vh;
+  filter: blur(2px);
   
 }
+
