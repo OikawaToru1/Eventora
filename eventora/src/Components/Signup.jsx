@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import {login} from '../store/authSlice'
+import {login as sliceLogin} from '../store/authSlice'
 import { useForm } from 'react-hook-form'
 import {Input, Button} from './index'
 import {authService} from '../appwrite/auth'
@@ -19,10 +19,9 @@ function Signup() {
                 const userData = await authService.createAccount(data);
                 if(userData)
                 {
-                    userDetails=  await authService.getUserData();
-                    console.log(userData);
-                    dispatch(login(userDetails))
-                    alert("You're now a user haha")
+                    const userDetails=  await authService.getUserData();
+                    if(userDetails)dispatch(sliceLogin(userDetails));
+                    // navigate?
                 }
 
              } 
@@ -61,6 +60,7 @@ function Signup() {
         <Input
         label = "Password"
         type = "password"
+        minLength = "8"
         {
             ...register("password",{
                 required: true,
