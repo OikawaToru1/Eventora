@@ -39,7 +39,7 @@ function App() {
       </Container>
       
       <Banner/>
-      <Footer/>
+  
     </div>
   )
 }
