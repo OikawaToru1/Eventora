@@ -19,7 +19,7 @@ function App() {
   return (
     <div>
 
-    <Header/>
+    {/* <Header/> */}
     <div className="w-[100%]">
             <CarousalSlider slides={slides} CarouselTitle='Discover Unforgettable Events' CarouselDescrip='A place where experiences come to life' />
         
@@ -40,7 +40,7 @@ function App() {
       </Container>
       
 
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }
