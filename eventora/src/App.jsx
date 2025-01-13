@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import {Header, Footer, CarousalSlider, Title, DiscoverIcons, ExploreOptions,Container,CardSlide} from './Components/index'
-
+import {Header, Footer, CarousalSlider, Title, DiscoverIcons, ExploreOptions,Container,CardSlide,Banner} from './Components/index'
 
 
 
@@ -39,7 +38,7 @@ function App() {
         <CardSlide/>
       </Container>
       
-
+      <Banner/>
       <Footer/>
     </div>
   )
