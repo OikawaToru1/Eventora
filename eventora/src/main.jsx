@@ -4,11 +4,6 @@ import './index.css'
 import App from './App.jsx'
 import {store} from './store/Store.js'
 import { Provider } from 'react-redux'
+import Signup from './Components/Signup.jsx'
+import Login from './Components/Login.jsx'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Provider store={store}>
-    <App/>
-    </Provider>
-  </StrictMode>,
-)
