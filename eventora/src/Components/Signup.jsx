@@ -52,7 +52,7 @@ function Signup() {
                             className="block"
                             label="Email"
                             type="email"
-                            placeholder='Enter email'
+                            placeholder='Enter your email'
                             {
                             ...register("email", {
                                 required: true,
@@ -63,7 +63,7 @@ function Signup() {
                         <Input
                             label="Password"
                             type="password"
-                            placeholder='Enter password'
+                            placeholder='Enter your password'
                             {
                             ...register("password", {
                                 required: true,
@@ -76,7 +76,7 @@ function Signup() {
                         <Button type="submit" name={"SignUp"} />
                         <div className='w-full mx-auto flex justify-center mt-[6px] items-center'>
                             <span className='text-white text-[14px]'>Already have an account?</span>
-                            <span className='text-green-600 underlineGreen pl-1 cursor-pointer text-[16px] font-medium'>Login</span>
+                            <span className='text-green-600 pl-1 cursor-pointer text-[16px] font-medium underlineRed hover:text-[#f50606] '>Login</span>
                         </div>
                     </form>
                 </div>
