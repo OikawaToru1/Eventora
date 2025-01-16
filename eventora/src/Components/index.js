@@ -29,4 +29,9 @@ export {
     CardSlide,
     Input,
     Button,
+    Banner,
+    AuthLayout,
+    Home,
+    Signup,
+    Login
 }
