@@ -6,7 +6,9 @@ export class AuthService{
     account
 
     constructor(){
-        this.client.setProject(config.appwriteProjectId);
+        this.client
+        .setProject(config.appwriteProjectId);
+
         this.account = new Account(this.client)
     }
 
@@ -17,10 +19,19 @@ export class AuthService{
 
             if(newAccount)
             {
-                console.log("Account created succesfully",newAccount);
+                try {
+                    console.log("Accoutnt is aleready sessioned");
+                    return newAccount;
+                    // return this.login({email,password})
+                    //already logged in
+                    
+                } catch (error) {
+                    console.log("No session created")
+                    return this.login({email,password});
+                }
             }
             else{
-                return newAccount
+                 return newAccount;
             }
         } catch (error) {
             console.log("CreateAccount :: Erorr", error);
