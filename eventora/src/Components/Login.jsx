@@ -4,21 +4,26 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { authService } from '../appwrite/auth'
 import { login as sliceLogin } from '../store/authSlice'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 function Login() {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
 
     const login = async (data) => {
         try {
-            const user = await authService.login(data);
-            if (user) {
-                userData = await authService.getUserData()
-                dispatch(sliceLogin(userData));
-                alert("You're logged in mister")
+            const testSession = await authService.getUserData();
+            if(testSession)
+            {
+                await authService.logout();
+            }
+            const session = await authService.login(data);
+            if (session) {
+               const userData = await authService.getUserData()
+                if (userData) dispatch(sliceLogin(userData));
+                navigate('/home')
 
             }
         }
@@ -69,7 +74,9 @@ function Login() {
                     />
                     <div className='w-full mx-auto flex justify-center mt-[6px] items-center'>
                             <span className='text-white text-[14px]'>Don't have an account?</span>
-                            <span className='text-green-600 pl-1 cursor-pointer text-[16px] font-medium underlineRed hover:text-[#f50606] '>Register</span>
+                            <span className='text-green-600 underlineGreen pl-1 cursor-pointer text-[16px] font-medium'>
+                                <Link to={'/signup'}>Register</Link>
+                            </span>
                         </div>
                 </form>
             </div>

@@ -11,7 +11,7 @@ const Input = React.forwardRef( function Input({
 
     return (
         <div className='w-[80%] flex flex-col mx-auto my-5 lg:pl-5'>
-            {label && <label className='text-xl indent-2 text-[#fff] font-medium ' 
+            {label && <label className='text-xl indent-2  font-medium ' 
             htmlFor={id}>
                 {label}
                 </label>}
@@ -22,7 +22,7 @@ const Input = React.forwardRef( function Input({
                      ref={ref}
                      {...props}
                      id={id}
-                ></input>  
+                /> 
         </div>
     )
 })
