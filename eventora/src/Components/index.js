@@ -14,6 +14,9 @@ import Login from './Login'
 import Signup from './Signup'
 import Home from './Home';
 import Banner from './Banner'
+import TextEditor from './TextEditor';
+import Select from './Select'
+import PostForm from './Post-Form/PostForm';
 
 
 
@@ -29,4 +32,12 @@ export {
     CardSlide,
     Input,
     Button,
+    Banner,
+    AuthLayout,
+    Home,
+    Login,
+    Signup,
+    TextEditor,
+    Select,
+    PostForm
 }
