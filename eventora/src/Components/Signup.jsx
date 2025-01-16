@@ -1,27 +1,35 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {login as sliceLogin} from '../store/authSlice'
 import { useForm } from 'react-hook-form'
 import { Input, Button } from './index'
 import { authService } from '../appwrite/auth'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 
 
 function Signup() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
 
     const Signup = async (data) => {
-        console.log("Im handled hai")
+
         try {
                 const userData = await authService.createAccount(data);
                 if(userData)
                 {
                     const userDetails=  await authService.getUserData();
-                    if(userDetails)dispatch(sliceLogin(userDetails));
-                    // navigate?
+                    if(userDetails) 
+                    {   
+                        dispatch(sliceLogin(userDetails));
+                        navigate('/home')
+                    }
+                }
+                else{
+                    console.log("Error :: signup error, usser detail  not found")
                 }
 
         }
@@ -76,7 +84,10 @@ function Signup() {
                         <Button type="submit" name={"SignUp"} />
                         <div className='w-full mx-auto flex justify-center mt-[6px] items-center'>
                             <span className='text-white text-[14px]'>Already have an account?</span>
-                            <span className='text-green-600 underlineGreen pl-1 cursor-pointer text-[16px] font-medium'>Login</span>
+                            
+                            <span className='pl text-red-600 underlineGreen pl-2 cursor-pointer text-[16px] font-medium'>
+                                <Link to={'/login'}>Login</Link>
+                            </span>
                         </div>
                     </form>
                 </div>
