@@ -4,7 +4,7 @@ import { TfiMenu } from "react-icons/tfi";
 import { IoClose } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"
 import LogoutBtn from "./LogoutBtn";
 
 function Header() {
@@ -30,12 +30,13 @@ function Header() {
                     <li className="underlineRed cursor-pointer hover:text-[#f50606] delay-100"> <Link to={'/about-us'}>About Us</Link></li>
                     <li className="underlineRed cursor-pointer hover:text-[#f50606]"> <Link to={'/post-form'}>Add Event</Link></li>
                     {
-                        userStatus && <li className="underlineRed cursor-pointer hover:text-[#f50606]"> <LogoutBtn children={"Logout"}/></li>
+                        userStatus ?  <li className="underlineRed cursor-pointer hover:text-[#f50606]"> <LogoutBtn/> </li> : 
+                        <li className="underlineRed cursor-pointer hover:text-[#f50606] delay-100"> <Link to={'/signup'}>Sign Up</Link></li>
                     }
                     
                 </ul>
 
-                <div className='profile pb-2 hidden lg:flex xl:pr-5'><img className='h-[45px] w-[45px] cursor-pointer' src={profileImage} alt="profile" /></div>
+                <div className='profile pb-2 hidden lg:flex xl:pr-5'><Link to={'/login'}><img className='h-[45px] w-[45px] cursor-pointer' src={profileImage} alt="profile" /></Link></div>
             </section>
 
         </div>

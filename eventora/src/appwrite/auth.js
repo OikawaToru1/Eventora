@@ -7,7 +7,9 @@ export class AuthService{
 
     constructor(){
         this.client
+        .setEndpoint(config.appwriteUrl)
         .setProject(config.appwriteProjectId);
+
 
         this.account = new Account(this.client)
     }
@@ -19,20 +21,23 @@ export class AuthService{
 
             if(newAccount)
             {
-                try {
-                    console.log("Accoutnt is aleready sessioned");
-                    return newAccount;
-                    // return this.login({email,password})
-                    //already logged in
+                const isSessioned = this.getUserData();
+                if(isSessioned)
+                    {
+                        console.log("A session is created at time of signup hai");
+                        return true;
+                    }
                     
-                } catch (error) {
-                    console.log("No session created")
-                    return this.login({email,password});
-                }
+                    else{
+                        console.log("nah no session");
+                        this.login(email, password)
+                    }
             }
+
             else{
-                 return newAccount;
+                return newAccount;
             }
+
         } catch (error) {
             console.log("CreateAccount :: Erorr", error);
         }
@@ -42,9 +47,16 @@ export class AuthService{
     async login({email, password})
     {
         try {
-            return await this.account.createEmailPasswordSession(email, password);
+            const active = this.getUserData();
+             if(active){
+                this.account.deleteSessions();
+                return await this.account.createEmailPasswordSession(email,password);
+             }
+            
         } catch (error) {
             console.log("Error :: login", error);
+            
+            
         }
     }
 
@@ -68,4 +80,4 @@ export class AuthService{
 
 }
 
-export const authService = new AuthService()
+export  const authService = new AuthService()

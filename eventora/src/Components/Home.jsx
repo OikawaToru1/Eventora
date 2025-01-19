@@ -1,19 +1,16 @@
 import React from 'react'
-import Header from './Header/Header'
 import Button from './Button'
 import { FaChevronRight } from "react-icons/fa6"
 import homeImg1 from "../assets/homepage-img1.avif"
 import homeImg2 from '../assets/homepage-img2.avif'
 import homeImg3 from "../assets/homepage-img3.jpg"
 import homeImg4 from "../assets/DiscovereventData/traditional.png"
+import { Link } from 'react-router-dom'
 // import homeImg4 from '../assets/homepage-img4.avif'
 
 function Home() {
   return (
     <div className='w-full h-screen'>
-      <div className='border-b-[1px] border-b-gray-300'>
-      <Header />
-      </div>
       <div className='homepage-background relative h-[100%] w-[100%] '>
         <div className=''>
         <img src={homeImg4} alt="background" className='rounded-[12px] w-[180px] h-[160px] object-cover drop-shadow-2xl absolute top-[12%] right-[5%] xl:w-[210px] xl:h-[180px] xl:right-[7%]' />
@@ -34,7 +31,7 @@ function Home() {
         <div className='w-[280px] absolute top-[44%] left-[6.8%] hover:text-[#cb7deb] text-white lg:w-[300px] md:top-[51%] md:left-[11.4%] lg:top-[58.5%] lg:left-[14%] xl:left-[17%] 
         '>
           <Button >
-          {`Let's Create Memories`}
+         <Link to={'/home'}> {`Let's Create Memories`}</Link>
           <span className='absolute top-[21px] right-10 lg:right-[50px]'><FaChevronRight/></span>
           </Button>
         </div>

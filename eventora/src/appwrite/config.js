@@ -18,9 +18,9 @@ export class Service
     }
 
     async createPost({
-        title,
         slug,
-        description,
+        title,
+        content,
         location,
         featuredImage,
         userId,
@@ -35,7 +35,7 @@ export class Service
                 slug,
                 {
                     title,
-                    description,
+                    content,
                     location,
                     featuredImage,
                     userId,
@@ -108,7 +108,7 @@ export class Service
         }
     }
 
-    async getPosts(queries = [Query.equal("Status","active")]){
+    async getPosts(queries = [Query.equal("status", "active")]){
         try {
             return await this.database.listDocuments(
                 envConfig.appwriteDatabaseId,
@@ -123,7 +123,7 @@ export class Service
 
     // images? idk
 
-    async uploadFile({file})
+    async uploadFile(file)
     {
         try {
             
@@ -151,12 +151,12 @@ export class Service
         }
     }
 
-    async getFilePreview({fileId})
+    async getPreview(fileId)
     {
         try {
-            return await this.storage.getFilePreview(
+            return this.storage.getFilePreview(
                 envConfig.appwriteBucketId,
-                fileId
+                fileId,
             )
             
         } catch (error) {

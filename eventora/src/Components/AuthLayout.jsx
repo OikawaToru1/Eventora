@@ -9,30 +9,22 @@ function AuthLayout({children, authentication = true}) {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true);
     const authStatus = useSelector(state=> state.auth.status)
-    // console.log("Im the auth status ",authStatus)
-
-    // useEffect(()=>{
-    //     if(authentication && authStatus !== authentication)
-    //     {
-    //         navigate('/signup');
-    //     }
-    //     else if(authentication && authStatus === authentication)
-    //     {
-    //         navigate('/home');
-    //     }
-    //     setLoader(false);
-    // },[authStatus, navigate, authentication])
 
     useEffect(()=>{
-        if(authStatus)
-        {
-            navigate('/home')
-        }
-        else{
+       if(authentication && authStatus !== authentication)
+       {
             navigate('/signup')
-        }
-        setLoader(false)
-    },[])
+            
+       }
+       else if(!authentication && authStatus !== authentication)
+       {
+            navigate('/home')
+            // !false = true, true !== false == true ==> executes.
+       }
+        setLoader(false);
+    },[authStatus, navigate, authentication])
+
+    
   return loader ? <h1>Loading...</h1> : <div>{children}</div>
 }
 

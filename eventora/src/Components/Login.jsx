@@ -3,7 +3,7 @@ import { Input, Button } from './index'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { authService } from '../appwrite/auth'
-import { login as sliceLogin } from '../store/authSlice'
+import {login as authLogin} from '../store/authSlice'      
 import { Link, useNavigate } from 'react-router-dom'
 
 
@@ -11,24 +11,27 @@ function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
+    
 
     const login = async (data) => {
         try {
-            const testSession = await authService.getUserData();
-            if(testSession)
-            {
-                await authService.logout();
+            const loginSession = await authService.login(data)
+            
+            if (loginSession) {
+                const userData = await authService.getUserData()
+                if(userData) {
+                    dispatch(authLogin(userData))
+                    console.log("I got the data yayyyy")
+                    console.log(userData.$id);
+                    navigate("/home")
+                }
+                else{
+                    console.log("No user data");
+                }
+                
             }
-            const session = await authService.login(data);
-            if (session) {
-               const userData = await authService.getUserData()
-                if (userData) dispatch(sliceLogin(userData));
-                navigate('/home')
-
-            }
-        }
-        catch (error) {
-            console.log("Error :: login ", error)
+        } catch (error) {
+            console.log("Error:: login jsx ", error);
         }
     }
 
