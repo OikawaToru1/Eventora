@@ -44,3 +44,14 @@
 }
 
 
+.img{
+  animation: moveImg 2s infinite 5s alternate-reverse both;
+  }
+  @keyframes moveImg{
+    0%{
+      transform: scale(1.1);
+      /* transform: translateX(20%); */
+      transition: all 0.3s ease-in-out;
+    }
+   
+  }
