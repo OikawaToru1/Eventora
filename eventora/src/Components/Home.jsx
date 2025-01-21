@@ -1,23 +1,26 @@
 import React from 'react'
 import Button from './Button'
 import { FaChevronRight } from "react-icons/fa6"
-import homeImg1 from "../assets/homepage-img1.avif"
-import homeImg2 from '../assets/homepage-img2.avif'
-import homeImg3 from "../assets/homepage-img3.jpg"
-import homeImg4 from "../assets/DiscovereventData/traditional.png"
+import homeImg1 from "../assets/homepage-img1.avif";
+import homeImg2 from '../assets/homepage-img2.avif';
+import homeImg5 from "../assets/homepage-img5.jpg";
+import homeImg6 from "../assets/homepage-img6.jpg";
 import { Link } from 'react-router-dom'
 // import homeImg4 from '../assets/homepage-img4.avif'
 
 function Home() {
   return (
     <div className='w-full h-screen'>
-      <div className='homepage-background relative h-[100%] w-[100%] '>
+      <div className='homepage-background relative h-[100%] w-[100%]'>
         <div className=''>
-        <img src={homeImg4} alt="background" className='rounded-[12px] w-[180px] h-[160px] object-cover drop-shadow-2xl absolute top-[12%] right-[5%] xl:w-[210px] xl:h-[180px] xl:right-[7%]' />
-        <img src={homeImg1} alt="background" className='rounded-[12px] w-[180px] h-[160px] object-cover drop-shadow-2xl absolute top-[22%] right-[13%] xl:w-[210px] xl:h-[180px] xl:top-[24%]' />
-        <img src={homeImg3} alt="background" className='rounded-[12px] w-[180px] h-[160px] object-cover drop-shadow-2xl absolute top-[32%] right-[20%] xl:w-[210px] xl:h-[180px] xl:top-[42%]' />
-        <img src={homeImg2} alt="background" className='rounded-[12px] w-[180px] h-[160px] object-cover drop-shadow-2xl absolute top-[50%] right-[12%] xl:w-[210px] xl:h-[180px] xl:top-[58%]' />
-        <img src={homeImg1} alt="background" className='rounded-[12px] w-[180px] h-[160px] object-cover drop-shadow-2xl absolute top-[60%] right-[5%] xl:w-[210px] xl:h-[180px] xl:top-[68%]' />
+        <img src={homeImg5} alt="background" className='img rounded-[16px] w-[180px] h-[160px] object-cover drop-shadow-2xl absolute top-[8%] right-[5%] xl:w-[200px] xl:h-[170px] xl:right-[7%]'/>
+        <img src={homeImg1} alt="background" className='img rounded-[16px] w-[180px] h-[160px] object-cover drop-shadow-2xl absolute top-[22%] right-[13%] xl:top-[36%]' />
+        <img src={homeImg5} alt="background" className='img rounded-[16px] w-[200px] h-[160px] object-cover drop-shadow-2xl absolute top-[32%] right-[20%]  xl:top-[54%]' />
+        <img src={homeImg2} alt="background" className='img rounded-[16px] w-[220px] h-[109px] object-cover drop-shadow-2xl absolute top-[50%] right-[1.5%]  xl:top-[62.5%] invisible lg:visible' />
+        <img src={homeImg6} alt="background" className='img rounded-[16px] w-[180px] h-[110px] object-cover drop-shadow-2xl absolute top-[60%] right-[13%] xl:top-[80.4%] invisible lg:visible' />
+        <img src={homeImg6} alt="background" className='img rounded-[16px] w-[220px] h-[120px] object-cover drop-shadow-2xl absolute top-[32%] right-[21.9%] xl:top-[16.3%] invisible xl:visible' />
+        <img src={homeImg2} alt="background" className='img rounded-[16px] w-[220px] h-[160px] object-cover drop-shadow-2xl absolute top-[50%] right-[30%]  xl:top-[34.5%]' />
+        
         </div>
         <div className='text-[32px] text-transparent bg-gradient-to-r  from-[#f55e5e]  to-[#7fbde7] bg-clip-text font-bold absolute top-[12%] left-[8%] flex flex-col gap-2 md:text-[40px] lg:text-[50px] xl:left-[12%]'>
           {/* <h1 className='text-[30px] font-bold'>Welcome</h1> */}

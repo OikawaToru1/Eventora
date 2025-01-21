@@ -42,7 +42,25 @@
   filter: blur(2px);
   
 }
+ .homepage-background{
+  /* background: linear-gradient(217deg,#ee9393, rgba(255,0,0,0) 100%),
+  linear-gradient(127deg, #ee9393, rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, #ffffff, rgba(0,0,255,0) 20%); */
+  /* background: linear-gradient(#ee9393, #9198e5); */
+  /* background: linear-gradient(to top right,#e6a7a7,#ffffff,#ec7a7a); */
+}
 
+.img{
+animation: moveImg 2s infinite 5s alternate-reverse both;
+}
+@keyframes moveImg{
+  0%{
+    transform: scale(1.1);
+    /* transform: translateX(20%); */
+    transition: all 0.3s ease-in-out;
+  }
+ 
+}
 
 .img{
   animation: moveImg 2s infinite 5s alternate-reverse both;
