@@ -19,7 +19,7 @@ function App() {
     <div>
 
 
-    <div className="w-[100%]">
+      <div className="w-[100%]">
             <CarousalSlider slides={slides} CarouselTitle='Discover Unforgettable Events' CarouselDescrip='A place where experiences come to life' />
         
       </div>
