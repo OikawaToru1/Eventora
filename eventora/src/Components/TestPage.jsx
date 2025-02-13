@@ -72,7 +72,7 @@ function EventDetail() {
             </div>
             
             <div>
-        <Container className='mt-16'>
+        <Container className='mt-10'>
         <Title text={"Discover Events"}/>
         <CardSlide/>
       </Container>
