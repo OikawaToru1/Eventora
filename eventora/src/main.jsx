@@ -11,6 +11,7 @@ import AllEvents from './Components/AllEvents.jsx'
 import Aboutus from './Components/Aboutus.jsx'
 import PostForm from './Components/Post-Form/PostForm.jsx'
 import EditPost from './Components/pages/EditPost.jsx'
+import Category from './Components/Category.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,5 +52,6 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
     <RouterProvider router={router} />
     </Provider>
+   
   </StrictMode>,
 )
