@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import profileImage from '../../assets/profile2.png'
 import { TfiMenu } from "react-icons/tfi";
 import { IoClose } from "react-icons/io5";
@@ -6,10 +6,18 @@ import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import LogoutBtn from "./LogoutBtn";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
     const [isOpen,setisOpen] = useState(false);
+    // const [errorMsg, setErrorMsg] = useState('')
+    const navigate = useNavigate()
+    const [input, setInput] = useState("");
     const userStatus = useSelector(state => state.auth.status)
+    const handleSearch = (event)=>{
+        setInput(event.target.value)
+    }
+    
  
 
     return (
@@ -17,9 +25,23 @@ function Header() {
             <h1 className=' xl:pl-6 lg:pl-3 xl:text-[21px] '><Link to={'/home'}>Eventora</Link></h1>
 
             <div className='search-box flex justify-between items-center border-black border-[1px] rounded-[18px]  text-[20px] py-[8px] md:w-[390px] xl:w-[510px]'>
-                <input className='ml-2 indent-4 outline-none placeholder:text-[#666666] md:w-[100%]' type="text" name="" id="" placeholder='Search your events...' />
+                <input className='ml-2 indent-4 outline-none placeholder:text-[#666666] md:w-[100%]' type="text" name="" id="" placeholder='Search your events...'
+                    value={input}
+                    onChange={handleSearch}
+                />
                 <div className='pr-3'>
                    <FiSearch size={25}/>
+                   <button className="bg-pink-400 p-2 rounded-md" onClick={()=>{
+                    if(input)
+                    {
+                        alert(`${input} search gardim`)
+                        navigate(`/${input}`)
+                        setInput("")
+                    }
+                    else{
+                        setInput("Enter text niga!!!!")
+                    }
+                   }}> search</button>
                 </div>
             </div>
             <section className='mobile-sidebar flex'>
