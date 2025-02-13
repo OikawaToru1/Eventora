@@ -1,39 +1,32 @@
 import React,{useEffect,useState} from "react";
-import Header from "./Header/Header";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from '../appwrite/config'
 import '../App.css'
 import {Button,Container} from '../Components/index'
 import parse from 'html-react-parser'
 import { useSelector } from "react-redux";
-import { MdOutlineDateRange } from "react-icons/md";
-import { FaRegClock, FaRegHeart } from "react-icons/fa";
-import { IoLocationOutline } from "react-icons/io5";
-import { FiShare2 } from "react-icons/fi";
 
 
 
 function Post(){
 
-  const [post, setPost] = useState(null)
+  const [img, setImg] = useState(null)
+  const [post, setPost] = useState()
   const {slug} = useParams()
-  console.log(slug);
   const navigate = useNavigate()
-
   const userData = useSelector((state)=> state.auth.userData);
   const isAuthor = post && userData ? post.userId === userData.$id : false;
 
   useEffect(()=>{
     if(slug)
     {
-      appwriteService.getPost(slug).then((post)=>{
-        if(post) setPost(post);
-        
-        else{
-          console.log("Couldnt find it");
-        }
-
-      })    
+        appwriteService.getPost({slug})
+        .then((post)=>{
+          setPost(post);
+        })
+    }
+    else{
+      navigate('/')
     }
   },[slug,navigate]);
 
@@ -46,16 +39,21 @@ function Post(){
       }
     })
   }
+  if(post)
+  {
+    appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)})
+  }
+  
   
   return post ? (
     <div className="py-8">
         <Container>
             <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-                <img
-                    src={appwriteService.getPreview(post.featuredImage)}
-                    alt={post.title}
-                    className="rounded-xl"
-                />
+            <img
+                        src={img}
+                        alt={post.title}
+                        className="rounded-xl"
+                    />
 
                 {isAuthor && (
                     <div className="absolute right-6 top-6">
