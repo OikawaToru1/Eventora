@@ -1,4 +1,3 @@
-// 
 
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -15,7 +14,10 @@ export default function PostForm({ post }) {
             slug: post?.$id || "",
             content: post?.content || "",
             status: post?.status || "active",
-            location : post?.location || ""
+            location : post?.location || "",
+            eventType : post?.type || "all",
+            date: post?.date || "",
+            price: post?.price || "",
         },
     });
 
@@ -23,7 +25,7 @@ export default function PostForm({ post }) {
 
     const submit = async (data) => {
         const userData  = await authService.getUserData()
-        console.log(userData.$id, "its user id haii haha")
+        // console.log(userData.$id, "its user id haii haha")
     
         if(userData)
             {
@@ -57,7 +59,7 @@ export default function PostForm({ post }) {
                 const dbPost = await appwriteService.createPost({ ...data, userId: (userData.$id) });
 
                 if (dbPost) {
-                    navigate(`/about-us`);
+                    navigate(`/home`);
                 }
             }
         }
@@ -108,6 +110,14 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("location", { required: true })}
                 />
+                <Input
+                    label= "Date :"
+                    min = "2024-2-12"
+                    max = "2025-2-12"
+                    placeholder = "Date"
+                    className= "mb-4"
+                   {...register("date",{required: true})}
+                />
                 <TextEditor label="Content : " name= "content" control={control} defaultValue={getValues("content")} />
             </div>
             <div className="w-1/3 px-2">
@@ -121,7 +131,7 @@ export default function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getPreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
@@ -132,6 +142,18 @@ export default function PostForm({ post }) {
                     label="Status"
                     className="mb-4"
                     {...register("status", { required: true })}
+                />
+                <Select
+                    options={["all", "sports","party","comedy","concert"]}
+                    label="Event Type"
+                    className="mb-4"
+                    {...register("eventType", { required: true })}
+                />
+                <Input
+                    label="Price :"
+                    placeholder=""
+                    className="mb-4"
+                    {...register("price", { required: true })}
                 />
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {post ? "Update" : "Submit"}
