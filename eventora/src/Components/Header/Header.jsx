@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutBtn from "./LogoutBtn";
 
+
 function Header() {
     const [isOpen,setisOpen] = useState(false);
     const userStatus = useSelector(state => state.auth.status)
@@ -23,7 +24,7 @@ function Header() {
                 </div>
             </div>
             <section className='mobile-sidebar flex'>
-                <div onClick={() => { prompt("Im") }} className='menu-btn  pl-1 cursor-pointer text-[22px] flex items-center justify-center lg:hidden '><TfiMenu /></div>
+                <div onClick={() => { prompt("Im") }} className='menu-btn  pl-1 cursor-pointer text-[22px] flex items-center justify-center lg:hidden'><TfiMenu /></div>
                 <div className='close-btn fixed top-3 right-3 pl-1 cursor-pointer text-[22px] hidden'><IoClose />
                 </div>
                 <ul className='header-link-items items-center font-medium gap-12 hidden lg:flex lg:pr-8 xl:pr-24 xl:text-[21px]'>
