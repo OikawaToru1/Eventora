@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from './Header/Header'
 import Button from './Button'
 import { FaChevronRight } from "react-icons/fa6"
 import homeImg1 from "../assets/homepage-img1.avif";
 import homeImg2 from '../assets/homepage-img2.avif';
 import homeImg5 from "../assets/homepage-img5.jpg";
 import homeImg6 from "../assets/homepage-img6.jpg";
+import { Link } from 'react-router-dom'
 // import homeImg4 from '../assets/homepage-img4.avif'
 
 function Home() {
@@ -34,7 +34,7 @@ function Home() {
         <div className='w-[280px] absolute top-[44%] left-[6.8%] hover:text-[#cb7deb] text-white lg:w-[300px] md:top-[51%] md:left-[11.4%] lg:top-[58.5%] lg:left-[14%] xl:left-[17%] 
         '>
           <Button >
-          {`Let's Create Memories`}
+         <Link to={'/home'}> {`Let's Create Memories`}</Link>
           <span className='absolute top-[21px] right-10 lg:right-[50px]'><FaChevronRight/></span>
           </Button>
         </div>

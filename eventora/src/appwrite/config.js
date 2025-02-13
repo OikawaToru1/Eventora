@@ -18,30 +18,75 @@ export class Service
     }
 
     async createPost({
-        title,
         slug,
-        description,
+        title,
+        content,
         location,
         featuredImage,
         userId,
         status,
+        eventType,
+        price,
+        date,
     })
     {
         try 
         {
-            return await this.database.createDocument(
-                envConfig.appwriteDatabaseId,
-                envConfig.appwriteCollectionId,
-                slug,
-                {
-                    title,
-                    description,
-                    location,
-                    featuredImage,
-                    userId,
-                    status,
-                }
-            )    
+            if(eventType === "all")
+            {
+                return await this.database.createDocument(
+                    envConfig.appwriteDatabaseId,
+                    envConfig.appwriteCollectionId,
+                    slug,
+                    {
+                        title,
+                        content,
+                        location,
+                        featuredImage,
+                        userId,
+                        status,
+                        eventType,
+                        price,
+                        date,
+                    }
+                )    
+            }
+            else if(eventType ==="concert"){
+                return await this.database.createDocument(
+                    envConfig.appwriteDatabaseId,
+                    envConfig.appwriteConcertCollectionId,
+                    slug,
+                    {
+                        title,
+                        content,
+                        location,
+                        featuredImage,
+                        userId,
+                        status,
+                        eventType,
+                        price,
+                        date
+                    }
+                )    
+            }
+            else{
+                return await this.database.createDocument(
+                    envConfig.appwriteDatabaseId,
+                    envConfig.appwriteConcertCollectionId,
+                    slug,
+                    {
+                        title,
+                        content,
+                        location,
+                        featuredImage,
+                        userId,
+                        status,
+                        eventType,
+                        price,
+                        date
+                    }
+                )    
+            }
 
         } catch (error) {
             console.log("Error ::CreatePost", error);
@@ -107,8 +152,33 @@ export class Service
             return false;
         }
     }
+    async getConcertPost({slug}){
+        try {
+            return await this.database.getDocument(
+                envConfig.appwriteDatabaseId,
+                envConfig.appwriteConcertCollectionId,
+                slug,
 
-    async getPosts(queries = [Query.equal("Status","active")]){
+            )
+        } catch (error) {
+            console.log("Error :: getConcertpost", error);
+            return false;
+        }
+    }
+    async getComedyPost({slug}){
+        try {
+            return await this.database.getDocument(
+                envConfig.appwriteDatabaseId,
+                envConfig.appwriteComedyCollectionId,
+                slug,
+            )
+        } catch (error) {
+            console.log("Error :: getComedypost", error);
+            return false;
+        }
+    }
+
+    async getPosts(queries = [Query.equal("status", "active")]){
         try {
             return await this.database.listDocuments(
                 envConfig.appwriteDatabaseId,
@@ -120,10 +190,36 @@ export class Service
             return false;
         }
     }
+    async getConcertPosts(queries = [Query.equal("eventType","concert")]){
+        // console.log("query",queries)
+        try {
+            return await this.database.listDocuments(
+                envConfig.appwriteDatabaseId,
+                envConfig.appwriteConcertCollectionId,
+                queries,
+            )
+        } catch (error) {
+            console.log("Erros :: getposts", error);
+            return false;
+        }
+    }
+    async getComedyPosts(queries = [Query.equal("eventType","comedy")]){
+        // console.log("query",queries)
+        try {
+            return await this.database.listDocuments(
+                envConfig.appwriteDatabaseId,
+                envConfig.appwriteComedyCollectionId,
+                queries,
+            )
+        } catch (error) {
+            console.log("Erros :: getComedyposts", error);
+            return false;
+        }
+    }
 
     // images? idk
 
-    async uploadFile({file})
+    async uploadFile(file)
     {
         try {
             
@@ -141,7 +237,7 @@ export class Service
     async deleteFile({fileId})
     {
         try {
-            return await this.storage.deleteFile(
+             await this.storage.deleteFile(
                 envConfig.appwriteBucketId,
                 fileId,
             )
@@ -151,20 +247,27 @@ export class Service
         }
     }
 
-    async getFilePreview({fileId})
-    {
-        try {
-            return await this.storage.getFilePreview(
-                envConfig.appwriteBucketId,
-                fileId
-            )
+    async getFilePreview(fileId)
+    {   
+
+        return this.storage.getFilePreview(
+            envConfig.appwriteBucketId,
+            fileId,
+        )
+        // try {
+        //     return this.storage.getFilePreview(
+        //         envConfig.appwriteBucketId,
+        //         fileId,
+        //     )
             
-        } catch (error) {
-            console.log("Error:: getFile View", error)
-            return false
-        }
-    }        
+        // } catch (error) {
+        //     console.log("Error:: getFile View", error)
+        //     return false
+        // }
+    }  
 }
+
+   
 
 const configService = new Service();
 

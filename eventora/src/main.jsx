@@ -11,41 +11,85 @@ import AllEvents from './Components/AllEvents.jsx'
 import Aboutus from './Components/Aboutus.jsx'
 import PostForm from './Components/Post-Form/PostForm.jsx'
 import EditPost from './Components/pages/EditPost.jsx'
-import Category from './Components/Category.jsx'
+import Post from './Components/Post.jsx'
+import TestPage from './Components/TestPage.jsx'
+import PostView from './Components/pages/PostView.jsx'
+// import Text from './Components/pages/Text.jsx'
+import Concert from './Components/pages/Concert.jsx'
+import Comedy from './Components/pages/Comedy.jsx'
+import ComedyView from './Components/pages/ComedyView.jsx'
+import PostTestView from './Components/pages/PostTestView.jsx'
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route>
-      <Route path='/' element={<Layout/>}>
-      <Route path='' element={(<Home/>)} />
-      <Route path='home' element= {(<AuthLayout authentication="true">
-        <App/>
-      </AuthLayout>)}/>
-      <Route path='all-event' element={(<AuthLayout authentication="true">
-        <AllEvents/>
-      </AuthLayout>)}/>
-      <Route path='about-us' element={<Aboutus/>}/>
-      <Route path='post-form' element={(<AuthLayout authentication="true">
-        <PostForm/>
-      </AuthLayout>)}/>
-      <Route path='edit-post' element ={(<AuthLayout authentication="true">
-        <EditPost/>
-      </AuthLayout>)}/>
-      </Route>
+const router = createBrowserRouter([
+  {
+    path : '/',
+    element : <Layout/>,
+    children :[
+      {
+        path : '',
+        element : <Home/>
+      },
+      {
+        path : '/home',
+        element : <App/>
+      },
+      {
+        path : '/about-us',
+        element :<Aboutus/>
+      },
+      {
+        path : '/posts',
+        element : <AllEvents/>, //nothing here.
+        
+      },
+      {
+        path: '/concert', // it shows concert rn
+        element : <Concert/>
+      },
+      {
+        path: '/comedy', // it shows concert rn
+        element : <Comedy/>
+      },
+      {
+        path : '/post/:slug',
+        element : <PostView/>
+      },
+      {
+        path : '/concert/:slug',
+        element : <PostTestView/>
+      },
+      {
+        path : '/comedy/:slug',
+        element : <ComedyView/>
+      },
+      {
+        path : '/test',
+        element : <TestPage/>
+      },
+      {
+        path : '/post-form',
+        element : <AuthLayout><PostForm/></AuthLayout>
+      },
+      {
+        path : '/edit-form',
+        element : <AuthLayout><EditPost/></AuthLayout>
+      }
 
-      <Route path='login' element={(
-        <AuthLayout authentication>
-          <Login/>
-        </AuthLayout>
-      )}/>
-      <Route path='signup' element={(
-        <AuthLayout authentication>
-          <Signup/>
-        </AuthLayout>)}/>
-    </Route>
-  )
-)
+    ]
 
+  },
+  {
+    path : '/',
+    children :[{
+      path : '/login',
+      element : <Login/>
+    },
+    {
+      path : '/signup',
+      element : <Signup/>
+    },]
+  }
+])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

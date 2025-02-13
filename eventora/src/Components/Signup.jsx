@@ -1,11 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {login as sliceLogin} from '../store/authSlice'
+import {login} from '../store/authSlice'
 import { useForm } from 'react-hook-form'
 import { Input, Button } from './index'
 import { authService } from '../appwrite/auth'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+
 
 
 
@@ -16,34 +17,25 @@ function Signup() {
     const { register, handleSubmit } = useForm()
 
     const Signup = async (data) => {
-
         try {
-                const userData = await authService.createAccount(data);
-                if(userData)
-                {
-                    const userDetails=  await authService.getUserData();
-                    if(userDetails) 
-                    {   
-                        dispatch(sliceLogin(userDetails));
-                        navigate('/home')
-                    }
-                }
-                else{
-                    console.log("Error :: signup error, usser detail  not found")
-                }
-
-        }
-        catch (error) {
-
-            console.log("Oh no u cant cum");
+            const userData = await authService.createAccount(data)
+            if (userData) {
+                const userData = await authService.getUserData()
+                if(userData) dispatch(login(userData));
+                navigate("/home")
+            }
+        } catch (error) {
+            console.log("Error:; signup.jsx", error)
         }
     }
+
+
 
     return (
         <>
             <div className='signup-background relative md:bg-center'></div>
             <div className=' grid justify-items-center place-items-center'>
-            <div className='absolute top-10 text-2xl font-semibold text-white'>!! Welcome My Friend !!</div>
+            <div className='absolute top-10 text-2xl font-semibold text-white'>Create an account to continue!!</div>
                 <div className='absolute top-24 pt-1 w-[80vw] h-[68vh] sm:w-[60vw] lg:w-[40vw] rounded-2xl bg-[#7e7e7e50] z-10 border border-gray-500 '>
                     <form onSubmit={handleSubmit(Signup)}>
                         <Input
@@ -89,12 +81,12 @@ function Signup() {
                                 <Link to={'/login'}>Login</Link>
                             </span>
                         </div>
+
                     </form>
                 </div>
             </div>
-
         </>
-        // </div>
+
 
     )
 }

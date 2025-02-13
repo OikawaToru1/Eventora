@@ -2,11 +2,14 @@ import React from 'react'
 import getEventsData from '../../assets/DiscovereventData/DiscoverEventsData';
 import Calender from '../../assets/DiscovereventData/calender.png'
 import '../../App.css'
+import { Link } from 'react-router-dom';
 
 
 function Card() {
   const getEventData = getEventsData()
   return (
+    <>
+    <Link to={'/test'}>
       <div className="text-[19px] w-[100%] h-[480px] flex justify-evenly items-center relative px-auto">
           {getEventData.map(item => (
             <div className=" h-[100%] inline-block p-7 lg:p-6" key={item.id} >
@@ -28,7 +31,8 @@ function Card() {
           ))}
 
         </div>
-
+        </Link>
+</>
   )
 }
 

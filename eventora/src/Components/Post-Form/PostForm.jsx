@@ -1,10 +1,11 @@
-import React,{useCallback, useEffect} from 'react'
-import { useForm } from 'react-hook-form'
-import appwriteService from '../../appwrite/config'
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import {Button, Input, Select ,TextEditor } from '../index'
 
+import React, { useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { Button, Input, TextEditor, Select } from "..";
+import appwriteService from "../../appwrite/config";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {authService }from '../../appwrite/auth'
 
 export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
@@ -13,13 +14,26 @@ export default function PostForm({ post }) {
             slug: post?.$id || "",
             content: post?.content || "",
             status: post?.status || "active",
+            location : post?.location || "",
+            eventType : post?.type || "all",
+            date: post?.date || "",
+            price: post?.price || "",
         },
     });
 
     const navigate = useNavigate();
-    const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
+        const userData  = await authService.getUserData()
+        // console.log(userData.$id, "its user id haii haha")
+    
+        if(userData)
+            {
+                alert("hahaha got the data")
+            }
+            else{
+                alert("nah nah nah nah nah")
+            }
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
@@ -41,10 +55,11 @@ export default function PostForm({ post }) {
             if (file) {
                 const fileId = file.$id;
                 data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+                // console.log(data.featuredImage, "Now i create db post for u lil bro");
+                const dbPost = await appwriteService.createPost({ ...data, userId: (userData.$id) });
 
                 if (dbPost) {
-                    navigate(`/post/${dbPost.$id}`);
+                    navigate(`/home`);
                 }
             }
         }
@@ -89,7 +104,21 @@ export default function PostForm({ post }) {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
-                <TextEditor label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                <Input
+                    label="Location :"
+                    placeholder="Location"
+                    className="mb-4"
+                    {...register("location", { required: true })}
+                />
+                <Input
+                    label= "Date :"
+                    min = "2024-2-12"
+                    max = "2025-2-12"
+                    placeholder = "Date"
+                    className= "mb-4"
+                   {...register("date",{required: true})}
+                />
+                <TextEditor label="Content : " name= "content" control={control} defaultValue={getValues("content")} />
             </div>
             <div className="w-1/3 px-2">
                 <Input
@@ -102,7 +131,7 @@ export default function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getPreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
@@ -114,9 +143,21 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full"
-                name ={post ? "Update" : "Submit"}
+                <Select
+                    options={["all", "sports","party","comedy","concert"]}
+                    label="Event Type"
+                    className="mb-4"
+                    {...register("eventType", { required: true })}
                 />
+                <Input
+                    label="Price :"
+                    placeholder=""
+                    className="mb-4"
+                    {...register("price", { required: true })}
+                />
+                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                    {post ? "Update" : "Submit"}
+                </Button>
             </div>
         </form>
     );

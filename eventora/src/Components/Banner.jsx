@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Banner() {
   return (
@@ -8,7 +9,7 @@ function Banner() {
         <div className="lg:text-[26px] text-[18px] pt-1 pl-4  leading-9">From sports and concerts to entertainment and culture, explore events that connect people, spark fun, and create lasting memories. Whatever your interest, there's an event waiting for you!</div>
         <div className="pt-6 pl-6">
             <button className="bg-white text-black py-3 px-8 rounded-[40px]  text-[18px] font-medium hover:drop-shadow-[0_5px_5px_rgba(200,200,200,0.25)] transition-all
-            "><span className=''>Post Event</span></button>
+            "><span className=''><Link to={'/post-form'}>Post Event</Link></span></button>
         </div>
     </div>
     

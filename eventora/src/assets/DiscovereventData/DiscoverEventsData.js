@@ -1,4 +1,4 @@
-import Traditional from '../../assets/DiscovereventData/traditional.png'
+import Traditional from './traditional.png'
 
 
 const EventsData = [
