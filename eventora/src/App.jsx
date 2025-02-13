@@ -1,6 +1,7 @@
 import React,{ useState,useEffect } from 'react'
 import appwriteService from './appwrite/config'
 import PostCard from './Components/PostCard'
+import ConcertPostCard from './Components/ConcertPostCard'
 
 import {Header, Footer, CarousalSlider, Title, DiscoverIcons, ExploreOptions,Container,CardSlide,Banner} from './Components/index'
 import { useNavigate } from 'react-router-dom'
@@ -12,15 +13,15 @@ function App() {
   const [posts, setPosts] = useState([])
   const navigate = useNavigate()
 
-  useEffect(()=>{
-    appwriteService.getPosts().then((posts)=>{
-      if(posts)
-      {
-        setPosts(posts.documents);
-        console.log("post cha")
-      }
-    })
-  },[setPosts,navigate])
+  // useEffect(()=>{
+  //   appwriteService.getPosts().then((posts)=>{
+  //     if(posts)
+  //     {
+  //       setPosts(posts.documents);
+  //       console.log("post cha")
+  //     }
+  //   })
+  // },[setPosts,navigate])
 
   
   const slides = [
@@ -55,18 +56,9 @@ function App() {
 
       <Container className=''>
         <Title text={"Events for You"}/>
-        {/* <CardSlide/> */}
-        <div className='flex w-full mb-60'>
-        <div className='w-full h-20 flex'>
-          {
-            posts.map((post)=>(
-              <div key={post.$id} > 
-              <PostCard {...post}/>
-              </div>
-            ))
-          }
-        </div>
-        </div>
+       
+        <CardSlide showPost={"all"}/>
+        
       </Container>
       
       <Banner/>
