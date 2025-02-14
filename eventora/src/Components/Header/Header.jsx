@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import LogoutBtn from "./LogoutBtn";
 import { useNavigate } from "react-router-dom";
-
+import Logo from "../../assets/logo1.png"
 
 function Header() {
     const [isOpen,setisOpen] = useState(false);
@@ -23,7 +23,11 @@ function Header() {
 
     return (
         <div className='header sticky top-0 py-2 flex h-18 w-[100%] justify-between px-6 qitems-center  z-30 bg-white text-[19px]'>
-            <h1 className=' xl:pl-6 lg:pl-3 xl:text-[21px] '><Link to={'/home'}>Eventora</Link></h1>
+            <div className=' xl:pl-6 lg:pl-3 xl:text-[21px] '>
+                <Link to={'/home'}>
+                    <img src={Logo} alt="Eventora" className="w-[90px] border-none " />
+                </Link>
+            </div>
 
             <div className='search-box flex justify-between items-center border-black border-[1px] rounded-[18px]  text-[20px] py-[8px] md:w-[390px] xl:w-[510px]'>
                 <input className='ml-2 indent-4 outline-none placeholder:text-[#666666] md:w-[100%]' type="text" name="" id="" placeholder='Search your events...'
@@ -31,8 +35,8 @@ function Header() {
                     onChange={handleSearch}
                 />
                 <div className='pr-3'>
-                   <FiSearch size={25}/>
-                   <button className="bg-pink-400 p-2 rounded-md" onClick={()=>{
+                   
+                   <button className=" p-2 rounded-lg" title="Search" onClick={()=>{
                     if(input)
                     {
                         alert(`${input} search gardim`)
@@ -40,13 +44,18 @@ function Header() {
                         setInput("")
                     }
                     else{
-                        setInput("Enter text niga!!!!")
+                        setInput("Write some event first !!!")
                     }
-                   }}> search</button>
+                   }}>
+                    <div className="flex gap-2 items-center">
+                        <span><FiSearch size={22}/></span>
+                   </div>
+                    
+                   </button>
                 </div>
             </div>
             <section className='mobile-sidebar flex'>
-                <div onClick={() => { prompt("Im") }} className='menu-btn  pl-1 cursor-pointer text-[22px] flex items-center justify-center lg:hidden'><TfiMenu /></div>
+                <div className='menu-btn  pl-1 cursor-pointer text-[22px] flex items-center justify-center lg:hidden'><TfiMenu /></div>
                 <div className='close-btn fixed top-3 right-3 pl-1 cursor-pointer text-[22px] hidden'><IoClose />
                 </div>
                 <ul className='header-link-items items-center font-medium gap-12 hidden lg:flex lg:pr-8 xl:pr-24 xl:text-[21px]'>

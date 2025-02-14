@@ -5,6 +5,7 @@ import businessImage from './business.png'
 import nightlifeImage from './nightlife.png'
 import culturalImage from './cultural.png'
 import exhibitionImage from './exhibition.png'
+import comedyImage from './comedy.png'
 
 const IconsData = [
     {
