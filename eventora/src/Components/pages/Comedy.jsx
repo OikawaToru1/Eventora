@@ -4,8 +4,9 @@ import appwriteService from '../../appwrite/config';
 import Container from '../Container/Container';
 import PostCard from '../PostCard';
 import Title from '../Title';
-import ConcertPostCard from '../ConcertPostCard'
+import ConcertPostCard from '../ConcertPostCard';
 import ComedyPostCard from '../ComedyPostCard'
+import { CarousalSlider } from '../index';
 
 function Text() {
     const [posts, setPosts] = useState([])
@@ -21,9 +22,21 @@ function Text() {
     })
   },[setPosts,navigate])
 
+  const slides = [
+    { url: "https://english.nepalpress.com/wp-content/uploads/2022/05/magne-buda-commedy.jpg" },
+    { url: "https://i.ytimg.com/vi/74FUqzT3iRs/maxresdefault.jpg" },
+    { url: "https://english.onlinekhabar.com/wp-content/uploads/2018/08/Comedy-Circle-4-1.jpg" },
+  
+  ];
+
   return (
-    <Container className=''>
-        <Title text={"Comedy Shows Near you ..."}/>
+    <>
+    <Container>
+        <Title text={"Category: Comedy"} />
+        <CarousalSlider slides={slides} CarouselTitle='Discover Events Within Comedy' />
+      </Container>
+    <Container className='mt-20'>
+        <Title text={"Comedy Shows Near you "}/>
         {/* <CardSlide/> */}
         <div className='flex w-full mb-60'>
         <div className='w-full h-20 flex mb-10'>
@@ -37,6 +50,8 @@ function Text() {
         </div>
         </div>
       </Container>
+    </>
+    
   )
 }
 
