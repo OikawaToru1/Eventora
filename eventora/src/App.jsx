@@ -1,9 +1,7 @@
 import React,{ useState,useEffect } from 'react'
 import appwriteService from './appwrite/config'
 import PostCard from './Components/PostCard'
-import ConcertPostCard from './Components/ConcertPostCard'
-
-import {Header, Footer, CarousalSlider, Title, DiscoverIcons, ExploreOptions,Container,CardSlide,Banner} from './Components/index'
+import {Header, Footer, CarousalSlider, Title, DiscoverIcons, ExploreOptions,Container,CardSlide,Banner,ConcertCardSlide,ComedyCardSlide} from './Components/index'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -54,10 +52,22 @@ function App() {
         <CardSlide/>
       </Container>
 
-      <Container className=''>
+      <Container className='mt-16'>
         <Title text={"Events for You"}/>
        
         <CardSlide showPost={"all"}/>
+        
+      </Container>
+      <Container className='mt-16'>
+        <Title text={"Events near you"}/>
+       
+        <ConcertCardSlide showPost={"concert"}/>
+        
+      </Container>
+      <Container className='mt-16'>
+        <Title text={"Comedy"}/>
+       
+        <ComedyCardSlide showPost={"comedy"}/>
         
       </Container>
       
