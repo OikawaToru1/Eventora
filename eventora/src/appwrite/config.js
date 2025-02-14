@@ -72,7 +72,7 @@ export class Service
             else{
                 return await this.database.createDocument(
                     envConfig.appwriteDatabaseId,
-                    envConfig.appwriteConcertCollectionId,
+                    envConfig.appwriteComedyCollectionId,
                     slug,
                     {
                         title,
@@ -204,7 +204,7 @@ export class Service
         }
     }
     async getComedyPosts(queries = [Query.equal("eventType","comedy")]){
-        // console.log("query",queries)
+        console.log("query",queries)
         try {
             return await this.database.listDocuments(
                 envConfig.appwriteDatabaseId,
