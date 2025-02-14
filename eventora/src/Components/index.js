@@ -17,7 +17,11 @@ import Banner from './Banner'
 import TextEditor from './TextEditor';
 import Select from './Select'
 import PostForm from './Post-Form/PostForm';
-
+import ComedyPostCard from './ComedyPostCard'
+import ConcertPostCard from './ConcertPostCard'
+import PostCard from './PostCard';
+import ConcertCardSlide from  './Card/ConcertCardSlide'
+import ComedyCardSlide from './Card/ComedyCardSlide'
 
 
 export {
@@ -39,5 +43,10 @@ export {
     Signup,
     TextEditor,
     Select,
-    PostForm
+    PostForm,
+    ComedyPostCard,
+    ConcertPostCard,
+    PostCard,
+    ConcertCardSlide,
+    ComedyCardSlide
 }
