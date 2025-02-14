@@ -3,7 +3,7 @@ import appwriteService from '../../appwrite/config'
 import Card from './Card'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { Link,useNavigate } from 'react-router-dom';
-import PostCard from '../PostCard';
+import {PostCard, ComedyPostCard, ConcertPostCard} from '../index'
 function CardSlide({showPost}) {
   const slideLeft = () => {
     let slider = document.getElementById('sliderDis');
@@ -32,8 +32,8 @@ function CardSlide({showPost}) {
       <div onClick={slideRight} className="z-10 absolute top-[42%] right-0 w-[32px] h-[54px] rounded-s-[50px] cursor-pointer  transition-all"><span className="absolute top-[13px] text-[32px] font-medium  "><FaChevronRight /></span></div>
       {showPost ? 
       <div className=" w-[100%] h-[100%] overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar-hide flex lg:justify-center mx-auto" id="sliderDis">
-        <div className='flex w-full mb-60'>
-        <div className='w-full h-20 flex mb-10'>
+
+        <div className='w-full  flex mb-10'>
           {
             posts.map((post)=>(
               <div key={post.$id} > 
@@ -41,7 +41,7 @@ function CardSlide({showPost}) {
               </div>
             ))
           }
-        </div>
+
         </div>
       </div>
        :
