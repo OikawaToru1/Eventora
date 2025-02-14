@@ -4,6 +4,7 @@ import appwriteService from '../../appwrite/config';
 import Container from '../Container/Container';
 import PostCard from '../PostCard';
 import Title from '../Title';
+import CardSlide from '../Card/CardSlide';
 import ConcertPostCard from '../ConcertPostCard'
 
 function Text() {
@@ -25,15 +26,7 @@ function Text() {
         <Title text={"Concerts Near you ..."}/>
         {/* <CardSlide/> */}
         <div className='flex w-full mb-60'>
-        <div className='w-full h-20 flex mb-10'>
-          {
-            posts.map((post)=>(
-              <div key={post.$id} > 
-              <ConcertPostCard {...post}/>
-              </div>
-            ))
-          }
-        </div>
+        <CardSlide showPost={"concert"}/>
         </div>
       </Container>
   )
