@@ -1,12 +1,13 @@
 import React from 'react'
 import '../App.css';
-import homeImg1 from "../assets/homepage-img1.avif";
+
 import homeImg5 from "../assets/homepage-img5.jpg";
 import homeImg4 from "../assets/homepage-img4.jpg";
-import Shisheer from "../assets/team-member-shisheer.jpg";
+import Shisheer from "../assets/team-member-shisheer1.jpg";
 import Sijan from "../assets/team-member-sijan.jpg";
 import Chandan from "../assets/team-member-chandan.jpg";
-import Anil from "../assets/team-member-anil.jpg"
+import Anil from "../assets/team-member-anil.jpg";
+import Aniket from "../assets/team-member-aniket.jpg"
 import {BsGithub} from "react-icons/bs";
 function Aboutus() {
   const teamMemberDetails = [
@@ -18,7 +19,7 @@ function Aboutus() {
     },
     {
       id: 2,
-      memberImg: homeImg1,
+      memberImg: Aniket,
       name: 'Aniket Adhikari',
       github: 'https://github.com/OikawaToru1/',
     },
@@ -26,7 +27,7 @@ function Aboutus() {
       id: 3,
       memberImg: Sijan,
       name: 'Sijan Chand Thakuri',
-      github: '',
+      github: 'https://github.com/Rayleigh901/',
     },
     {
       id: 4,
@@ -38,7 +39,7 @@ function Aboutus() {
       id: 5,
       memberImg: Shisheer,
       name: 'Shisheer Chhantel',
-      github: '',
+      github: 'https://github.com/Rayleigh901/',
     },
   ]
   return (
