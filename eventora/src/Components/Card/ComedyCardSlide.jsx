@@ -20,26 +20,7 @@ function CardSlide({showPost}) {
   const [posts, setPosts] = useState([])
   const navigate = useNavigate()
   useEffect(()=>{
-   if(showPost==="all")
-   {
-    appwriteService.getPosts().then((posts)=>{
-      if(posts)
-      {
-        setPosts(posts.documents);
-        console.log("post cha")
-      }
-    })
-   }
-   else if(showPost ==="concert"){
-    appwriteService.getConcertPosts().then((posts)=>{
-      if(posts)
-      {
-        setPosts(posts.documents);
-        console.log("post cha")
-      }
-    })
-   }
-   else {
+    
     appwriteService.getComedyPosts().then((posts)=>{
       if(posts)
       {
@@ -47,7 +28,7 @@ function CardSlide({showPost}) {
         console.log("post cha")
       }
     })
-   }
+   
   },[setPosts,navigate])
   return (
     <div className='w-[100%] flex '>
