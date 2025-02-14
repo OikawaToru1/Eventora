@@ -11,26 +11,31 @@ const IconsData = [
         id:crypto.randomUUID(),
         IconImage:musicImage,
         title:'Music',
+        route : '/concert'
     },
     {
         id:crypto.randomUUID(),
         IconImage:holidayImage,
         title:'Holidays',
+        route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:hobbieImage,
         title:'Hobbies',
+        route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:businessImage,
         title:'business',
+        route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:nightlifeImage,
         title:'nightLife',
+        route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
@@ -41,21 +46,25 @@ const IconsData = [
         id:crypto.randomUUID(),
         IconImage:exhibitionImage,
         title:'Exhibition',
+        route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:hobbieImage,
         title:'Hobbies',
+        route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:businessImage,
         title:'business',
+        route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:nightlifeImage,
         title:'nightLife',
+        route : '/comedy'
     },  
 ]
 
