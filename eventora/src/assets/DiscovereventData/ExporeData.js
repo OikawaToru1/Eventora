@@ -5,23 +5,20 @@ import businessImage from './business.png'
 import nightlifeImage from './nightlife.png'
 import culturalImage from './cultural.png'
 import exhibitionImage from './exhibition.png'
+import comedyImage from './comedy.png'
 
 const IconsData = [
     {
         id:crypto.randomUUID(),
         IconImage:musicImage,
-        title:'Music',
+        title:'Concert',
     },
     {
         id:crypto.randomUUID(),
         IconImage:holidayImage,
         title:'Holidays',
     },
-    {
-        id:crypto.randomUUID(),
-        IconImage:hobbieImage,
-        title:'Hobbies',
-    },
+    
     {
         id:crypto.randomUUID(),
         IconImage:businessImage,
@@ -44,19 +41,9 @@ const IconsData = [
     },
     {
         id:crypto.randomUUID(),
-        IconImage:hobbieImage,
-        title:'Hobbies',
-    },
-    {
-        id:crypto.randomUUID(),
-        IconImage:businessImage,
-        title:'business',
-    },
-    {
-        id:crypto.randomUUID(),
-        IconImage:nightlifeImage,
-        title:'nightLife',
-    },  
+        IconImage:comedyImage,
+        title:'Comedy',
+    }, 
 ]
 
 const getIconsData = () =>{
