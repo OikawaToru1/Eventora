@@ -6,6 +6,7 @@ import PostCard from '../PostCard';
 import Title from '../Title';
 import ConcertPostCard from '../ConcertPostCard'
 import ComedyPostCard from '../ComedyPostCard'
+import CardSlide from '../Card/CardSlide';
 
 function Text() {
     const [posts, setPosts] = useState([])
@@ -24,18 +25,7 @@ function Text() {
   return (
     <Container className=''>
         <Title text={"Comedy Shows Near you ..."}/>
-        {/* <CardSlide/> */}
-        <div className='flex w-full mb-60'>
-        <div className='w-full h-20 flex mb-10'>
-          {
-            posts.map((post)=>(
-              <div key={post.$id} > 
-              <ComedyPostCard {...post}/>
-              </div>
-            ))
-          }
-        </div>
-        </div>
+       <CardSlide showPost={"comdey"}/>
       </Container>
   )
 }
