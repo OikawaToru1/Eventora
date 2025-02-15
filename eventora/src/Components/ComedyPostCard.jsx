@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import appwriteService from '../appwrite/config'
 import {Link} from 'react-router-dom'
 import Calender from '../assets/DiscovereventData/calender.png'
-import altImagae from '../assets/altImage.jpeg'
-// import altImage from '../assets/homepage-img3.jpg'
+import { isExpired } from './pages/dateValidate'
 
 
 function PostCard({$id, title, featuredImage,location,price,eventType,date}) {
@@ -13,7 +12,7 @@ function PostCard({$id, title, featuredImage,location,price,eventType,date}) {
     appwriteService.getFilePreview(featuredImage).then((res)=>{setImg(res.href)})
   }
 
-  
+
   return (
   <>
   
@@ -28,11 +27,15 @@ function PostCard({$id, title, featuredImage,location,price,eventType,date}) {
                   <span className="underlineGray">{title}</span>
                   <div className="flex items-center gap-2">
                     <img src={Calender} alt="calender" className="w-5 h-5 "/>
+                    {date? date : ""}
                   </div>
                   <span className="capitalize underlineGray">{location}</span>
-                 {price ?  <div className="flex justify-end pr-4 text-[22px]">{price}</div> : <div className="flex justify-end pr-4 text-[22px]">Free</div>}
+                  {
+                    isExpired(date) && <div><span className='bg-red-700 p-1 rounded-md'>Expired Event</span></div>
+                  }
+                 {price ?  <div className="flex justify-end pr-4 text-[22px]">Rs {price}</div> : <div className="flex justify-end pr-4 text-[22px]">Free</div>}
                  <br />
-                 {eventType? eventType : "concert"}
+                 {/* {eventType? eventType : "concert"} */}
                 </div>
 
               </div>
