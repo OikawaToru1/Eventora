@@ -1,4 +1,5 @@
-import { Client, Storage, Databases, Query, ID } from "appwrite";
+import { Client, Storage, Databases, Query, ID} from "appwrite";
+
 import envConfig from "../envConfig/envConfig";
 
 export class Service 
@@ -28,6 +29,7 @@ export class Service
         eventType,
         price,
         date,
+        url
     })
     {
         try 
@@ -48,6 +50,7 @@ export class Service
                         eventType,
                         price,
                         date,
+                        url,
                     }
                 )    
             }
@@ -65,7 +68,8 @@ export class Service
                         status,
                         eventType,
                         price,
-                        date
+                        date,
+                        url
                     }
                 )    
             }
@@ -83,7 +87,8 @@ export class Service
                         status,
                         eventType,
                         price,
-                        date
+                        date,
+                        url
                     }
                 )    
             }
@@ -204,7 +209,7 @@ export class Service
         }
     }
     async getComedyPosts(queries = [Query.equal("eventType","comedy")]){
-        console.log("query",queries)
+        // console.log("query",queries)
         try {
             return await this.database.listDocuments(
                 envConfig.appwriteDatabaseId,
@@ -264,7 +269,20 @@ export class Service
         //     console.log("Error:: getFile View", error)
         //     return false
         // }
-    }  
+    } 
+    
+    // user data from here
+
+    // async getUserName(userId)
+    // {
+    //     try {
+    //         const user = await this.users.get(userId);
+    //         console.log("username ", user.name)
+    //         return user.name
+    //     } catch (error) {
+    //         console.log("errors" , error)
+    //     }
+    // }
 }
 
    
