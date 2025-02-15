@@ -13,7 +13,7 @@ function AuthLayout({children, authentication = true}) {
     useEffect(()=>{
        if(authentication && authStatus !== authentication)
        {
-            navigate('/signup')
+            navigate('/login')
             
        }
        else if(!authentication && authStatus !== authentication)
