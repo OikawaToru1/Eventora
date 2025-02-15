@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import LogoutBtn from "./LogoutBtn";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../assets/logo1.png"
+import Logo from "../../assets/logo2.jpg"
 
 function Header() {
     const [isOpen,setisOpen] = useState(false);
@@ -22,10 +22,10 @@ function Header() {
  
 
     return (
-        <div className='header sticky top-0 py-2 flex h-18 w-[100%] justify-between px-6 qitems-center  z-30 bg-white text-[19px]'>
-            <div className=' xl:pl-6 lg:pl-3 xl:text-[21px] '>
+        <div className='header sticky top-0 py-2 flex h-18 w-[100%] justify-between px-6 items-center z-30 bg-white text-[19px]'>
+            <div className=' xl:pl-6 lg:pl-3 xl:text-[21px] pt-2'>
                 <Link to={'/home'}>
-                    <img src={Logo} alt="Eventora" className="w-[90px] border-none " />
+                    <img src={Logo} alt="Eventora" className="w-[60px] border-none " />
                 </Link>
             </div>
 
@@ -44,7 +44,7 @@ function Header() {
                         setInput("")
                     }
                     else{
-                        setInput("Write some event first !!!")
+                        setInput("Enter event first !!!")
                     }
                    }}>
                     <div className="flex gap-2 items-center">
@@ -54,11 +54,11 @@ function Header() {
                    </button>
                 </div>
             </div>
-            <section className='mobile-sidebar flex'>
+            <section className='mobile-sidebar flex text-[#292929] '>
                 <div className='menu-btn  pl-1 cursor-pointer text-[22px] flex items-center justify-center lg:hidden'><TfiMenu /></div>
                 <div className='close-btn fixed top-3 right-3 pl-1 cursor-pointer text-[22px] hidden'><IoClose />
                 </div>
-                <ul className='header-link-items items-center font-medium gap-12 hidden lg:flex lg:pr-8 xl:pr-24 xl:text-[21px]'>
+                <ul className='items-center font-medium gap-12 hidden lg:flex lg:pr-8 xl:pr-24 xl:text-[21px]'>
                     <li className="underlineRed cursor-pointer hover:text-[#f50606] delay-100"> <Link to={'/about-us'}>About Us</Link></li>
                     <li className="underlineRed cursor-pointer hover:text-[#f50606]"> <Link to={'/post-form'}>Add Event</Link></li>
                     {
@@ -68,7 +68,7 @@ function Header() {
                     
                 </ul>
 
-                <div className='profile pb-2 hidden lg:flex xl:pr-5'><Link to={'/login'}><img className='h-[45px] w-[45px] cursor-pointer' src={profileImage} alt="profile" /></Link></div>
+                {/* <div className='profile pb-2 hidden lg:flex xl:pr-5'><Link to={'/login'}><img className='h-[45px] w-[45px] cursor-pointer' src={profileImage} alt="profile" /></Link></div> */}
             </section>
 
         </div>
