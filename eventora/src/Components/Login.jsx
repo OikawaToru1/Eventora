@@ -10,7 +10,11 @@ import { Link, useNavigate } from 'react-router-dom'
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { register, handleSubmit } = useForm()
+    const { 
+            register,
+            handleSubmit,
+            formState : {errors}
+        } = useForm()
     
 
     const login = async (data) => {
@@ -57,6 +61,7 @@ function Login() {
                         )}
 
                     />
+                     {errors.email && <span className=' text-red-600 px-20'>Email is invalid</span>}
 
                     <Input
                         label="Password"
@@ -70,6 +75,7 @@ function Login() {
 
                         }
                     />
+                     {errors.password && <span className=' text-red-600 px-20'>Password```` is required</span>}
                     <Button
                         type="submit"
                         name={"Login"}

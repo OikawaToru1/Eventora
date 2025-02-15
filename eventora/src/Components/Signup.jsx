@@ -14,7 +14,11 @@ import { useNavigate } from 'react-router-dom'
 function Signup() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { register, handleSubmit } = useForm()
+    const { 
+        register,
+        handleSubmit,
+        formState : {errors}
+        } = useForm()
 
     const Signup = async (data) => {
         try {
@@ -36,7 +40,7 @@ function Signup() {
             <div className='signup-background relative md:bg-center'></div>
             <div className=' grid justify-items-center place-items-center'>
             <div className='absolute top-10 text-2xl font-semibold text-white'>Create an account to continue!!</div>
-                <div className='absolute top-24 pt-1 w-[80vw] h-[68vh] sm:w-[60vw] lg:w-[40vw] rounded-2xl bg-[#7e7e7e50] z-10 border border-gray-500 '>
+                <div className='absolute top-24 pt-1 w-[80vw] h-[70vh] sm:w-[60vw] lg:w-[40vw] rounded-2xl bg-[#7e7e7e50] z-10 border border-gray-500 '>
                     <form onSubmit={handleSubmit(Signup)}>
                         <Input
                             className='block'
@@ -47,6 +51,7 @@ function Signup() {
                                 maxLength: 30
                             })}
                         />
+                        {errors.name && <span className=' text-red-600 px-20'>UserName is required</span>}
 
                         <Input
                             className="block"
@@ -60,6 +65,7 @@ function Signup() {
                             })
                             }
                         />
+                        {errors.email && <span className=' text-red-600 px-20'>Email is required</span>}
                         <Input
                             label="Password"
                             type="password"
@@ -73,6 +79,7 @@ function Signup() {
                             })
                             }
                         />
+                        {errors.password && <span className=' text-red-600 px-20'>Password is required</span>}
                         <Button type="submit" name={"SignUp"} />
                         <div className='w-full mx-auto flex justify-center mt-[6px] items-center'>
                             <span className='text-white text-[14px]'>Already have an account?</span>
