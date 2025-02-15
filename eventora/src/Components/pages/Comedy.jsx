@@ -7,7 +7,7 @@ import Title from '../Title';
 import ConcertPostCard from '../ConcertPostCard';
 import ComedyPostCard from '../ComedyPostCard'
 import CardSlide from '../Card/CardSlide';
-import { CarousalSlider } from '../index';
+import { CarousalSlider, ComedyCardSlide } from '../index';
 
 function Text() {
     const [posts, setPosts] = useState([])
@@ -39,7 +39,8 @@ function Text() {
     <Container className='mt-20'>
         <Title text={"Comedy Shows Near you "}/>
         {/* <CardSlide/> */}
-        <div className='flex w-full mb-60'>
+        <ComedyCardSlide showPost={"comedy"}/>
+        {/* <div className='flex w-full mb-60'>
         <div className='w-full h-20 flex mb-10'>
           {
             posts.map((post)=>(
@@ -49,7 +50,7 @@ function Text() {
             ))
           }
         </div>
-        </div>
+        </div> */}
       </Container>
     
     </>
