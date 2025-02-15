@@ -48,6 +48,7 @@ function Login() {
                         label="Email"
                         type="email"
                         placeholder="Enter your email"
+                        className="text-white"
                         {...register(
                             "email",
                             {
@@ -62,6 +63,7 @@ function Login() {
                         label="Password"
                         type="password"
                         placeholder="Enter your password"
+                        className='text-white'
                         {...register("password",
                             {
                                 required: true,
