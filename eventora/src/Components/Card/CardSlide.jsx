@@ -46,11 +46,11 @@ function CardSlide({showPost}) {
       </div>
        :
       <div className=" w-[100%] h-[100%] overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar-hide flex lg:justify-center mx-auto" id="sliderDis">
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
+        <div className='flex w-full'>
+          <div className=''>
+          <Card/>  
+          </div>
+        </div>
     </div>}
     </div>
   )

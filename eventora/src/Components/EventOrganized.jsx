@@ -12,11 +12,6 @@ function EventOrganized({organizer}) {
                 <span>Organized by:</span>
                 <span className='text-[18px] text-transparent bg-gradient-to-r  from-[#f55e5e]  to-[#7fbde7] bg-clip-text font-bold '>{organizer ? organizer : "Eventora Team"}</span>
             </div>
-            <div className='pt-[10px]'> 
-                <button className='bg-black text-white text-[16px] px-[22px] py-1 rounded-[18px]'>
-                    Follow
-                </button>
-            </div>
         </div>
         
         {/* <div className='pt-4 pl-2'>

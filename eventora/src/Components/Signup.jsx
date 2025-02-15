@@ -7,10 +7,6 @@ import { authService } from '../appwrite/auth'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-
-
-
-
 function Signup() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -43,7 +39,7 @@ function Signup() {
                 <div className='absolute top-24 pt-1 w-[80vw] h-[70vh] sm:w-[60vw] lg:w-[40vw] rounded-2xl bg-[#7e7e7e50] z-10 border border-gray-500 '>
                     <form onSubmit={handleSubmit(Signup)}>
                         <Input
-                            className='block'
+                            className='block text-white'
                             label="Username"
                             placeholder='Enter a username'
                             {...register("name", {
@@ -54,7 +50,7 @@ function Signup() {
                         {errors.name && <span className=' text-red-600 px-20'>UserName is required</span>}
 
                         <Input
-                            className="block"
+                            className="block text-white"
                             label="Email"
                             type="email"
                             placeholder='Enter your email'
@@ -69,6 +65,7 @@ function Signup() {
                         <Input
                             label="Password"
                             type="password"
+                            className='text-white'
                             placeholder='Enter your password'
                             {
                             ...register("password", {
