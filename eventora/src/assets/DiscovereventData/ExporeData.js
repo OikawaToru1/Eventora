@@ -1,11 +1,12 @@
 import musicImage from './music.png'
 import holidayImage from './holidays.png'
-import hobbieImage from './hobbies.png'
 import businessImage from './business.png'
 import nightlifeImage from './nightlife.png'
 import culturalImage from './cultural.png'
 import exhibitionImage from './exhibition.png'
 import comedyImage from './comedy.png'
+import educationImage from './education.png'
+import sportsImage from './sports.png'
 
 const IconsData = [
     {
@@ -41,9 +42,19 @@ const IconsData = [
     },
     {
         id:crypto.randomUUID(),
+        IconImage:educationImage,
+        title:'Education',
+    },
+    {
+        id:crypto.randomUUID(),
+        IconImage:sportsImage,
+        title:'Sports',
+    },  
+    {
+        id:crypto.randomUUID(),
         IconImage:comedyImage,
         title:'Comedy',
-    }, 
+    },  
 ]
 
 const getIconsData = () =>{
