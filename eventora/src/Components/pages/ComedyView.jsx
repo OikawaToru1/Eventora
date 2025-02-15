@@ -4,9 +4,10 @@ import appwriteService from '../../appwrite/config.js'
 import '../../App.css'
 import parse from 'html-react-parser'
 import { useSelector } from "react-redux";
-import getEventsData from "../../assets/DiscovereventData/DiscoverEventsData.js";
+import { isExpired } from "./dateValidate.js";
+import { copyToClipboard } from "./copyToClipboard.js";
 
-import {CarousalSlider, Title,Container,CardSlide} from '../../Components/index.js'
+import {CarousalSlider, Title,Container,CardSlide, Button} from '../../Components/index.js'
 import { MdOutlineDateRange } from "react-icons/md";
 import { FaRegClock, FaRegHeart } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
@@ -16,13 +17,14 @@ import AboutEvent from "../AboutEvent.jsx";
 
 
 function Post(){
-
   const [img, setImg] = useState(null)
   const [post, setPost] = useState()
   const {slug} = useParams()
   const navigate = useNavigate()
   const userData = useSelector((state)=> state.auth.userData);
   const isAuthor = post && userData ? post.userId === userData.$id : false;
+  console.log(`is author : ${isAuthor}`)  
+//   console.log("post user id",post.userId, userData.$id )
 
   useEffect(()=>{
     if(slug)
@@ -49,6 +51,9 @@ function Post(){
   if(post)
   {
     appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)})
+    console.log(post.userId)
+    console.log(post.url);
+
   }
   
   
@@ -56,16 +61,20 @@ function Post(){
 
     <div className="w-[100vw]">
         {isAuthor && (
-                    <div className="absolute right-6 top-6">
+                    
+                        <div className="flex gap-8 justify-end pr-6 ">
                         <Link to={`/edit-post/${post.$id}`}>
-                            <Button bgColor="bg-green-500" className="mr-3">
+                            <div className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
+   rounded-3xl mt-2 font-medium hover:text-[#9232b8b4] hover:bg-gradient-to-r hover:from-[#ffffff] hover:to-[#ffffff] hover:border hover:border-[#9232b8b4]">
                                 Edit
-                            </Button>
+                            </div>
                         </Link>
-                        <Button bgColor="bg-red-500" onClick={deletePost}>
-                            Delete
-                        </Button>
-                    </div>
+                        <div className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
+   rounded-3xl mt-2 font-medium hover:text-[#9232b8b4] hover:bg-gradient-to-r hover:from-[#ffffff] hover:to-[#ffffff] hover:border hover:border-[#9232b8b4]">
+                                Delete
+                            </div>
+                        </div>
+                
                 )}
          
 
@@ -82,18 +91,21 @@ function Post(){
                         </div>
                         <div className="flex items-center gap-[6px] cursor-pointer ">
                             <span><MdOutlineDateRange size={26} /></span>
-                            <span className="pt-[6px]">{"December 22"}</span>
+                            <span className="pt-[6px]">{post.date ? post.date :"December 22"}</span>
                         </div>
                         <div className="flex items-center gap-[6px] cursor-pointer">
                             <span><FaRegClock size={24} /></span>
                             <span className="pt-[6px] lowercase">{"7pm onwards"}</span></div>
                         <div className="flex items-center gap-[6px] cursor-pointer">
-                            <span><IoLocationOutline size={24} /></span>
+                            <span><Link to={post.url}><IoLocationOutline size={24} /></Link></span>
                             <span className="pt-[6px]">{post.location}</span>
+                        </div>
+                        <div className="flex items-center gap-[6px] cursor-pointer">
+                        {isExpired(post.date) &&<div><span className='bg-red-700 p-1 rounded-md'>Expired Event</span></div>}
                         </div>
                        
                     </div>
-                    <div className="absolute top-[70%] left-[10%] flex gap-10">
+                    <div className="absolute top-[78%] left-[10%] flex gap-10">
                         <div className="cursor-pointer bg-white px-[32px] py-[9px] rounded-[18px] flex justify-center items-center gap-2">
                             <span className="text-[17px] font-normal">Price(Rs):</span>
                             <span className="font-medium text-[20px]">{post.price ? post.price : "Free"}</span>
@@ -110,7 +122,7 @@ function Post(){
                     </div>
                     <div className="flex items-center gap-2 absolute top-[60%] md:top-[88%] right-[8%] md:right-[5.5%] text-white md:text-xl font-medium">
                         <span>Share with others:</span>
-                        <span className="cursor-pointer text-[18px] md:text-3xl"><FiShare2 /></span>
+                       <button onClick={()=> copyToClipboard(window.location.href)}> <span className="cursor-pointer text-[18px] md:text-3xl hover:bg-red-800 "><FiShare2 /></span></button>
                     </div>
                 </div>
             </div>
