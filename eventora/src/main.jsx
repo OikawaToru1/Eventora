@@ -19,6 +19,7 @@ import Concert from './Components/pages/Concert.jsx'
 import Comedy from './Components/pages/Comedy.jsx'
 import ComedyView from './Components/pages/ComedyView.jsx'
 import PostTestView from './Components/pages/PostTestView.jsx'
+import Layouts from './AdminPanel/Layouts.jsx'
 
 const router = createBrowserRouter([
   {
@@ -73,8 +74,8 @@ const router = createBrowserRouter([
       {
         path : '/edit-form',
         element : <AuthLayout><EditPost/></AuthLayout>
-      }
-
+      },
+      
     ]
 
   },
@@ -88,7 +89,12 @@ const router = createBrowserRouter([
       path : '/signup',
       element : <Signup/>
     },]
+  },
+  {
+    path:'/admin',
+    element:<Layouts/>
   }
+
 ])
 
 createRoot(document.getElementById('root')).render(
@@ -96,6 +102,5 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
     <RouterProvider router={router} />
     </Provider>
-   
   </StrictMode>,
 )
