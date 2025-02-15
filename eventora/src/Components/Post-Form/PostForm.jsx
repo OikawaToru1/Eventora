@@ -18,6 +18,7 @@ export default function PostForm({ post }) {
             eventType : post?.type || "all",
             date: post?.date || "",
             price: post?.price || "",
+            url : post?.url || ""
         },
     });
 
@@ -29,10 +30,10 @@ export default function PostForm({ post }) {
     
         if(userData)
             {
-                alert("hahaha got the data")
+                alert("hey got the data")
             }
             else{
-                alert("nah nah nah nah nah")
+                alert("error while uploading")
             }
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
@@ -153,7 +154,13 @@ export default function PostForm({ post }) {
                     label="Price :"
                     placeholder=""
                     className="mb-4"
-                    {...register("price", { required: true })}
+                    {...register("price",)}
+                />
+                <Input
+                    label= "Url :"
+                    placeholder = "location"
+                    className= "mb-4"
+                   {...register("url",{required: true})}
                 />
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {post ? "Update" : "Submit"}
