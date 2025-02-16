@@ -5,7 +5,7 @@ import App from './App.jsx'
 import {store} from './store/Store.js'
 import { Provider } from 'react-redux'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import {Login,Signup,AuthLayout,Home} from './Components/index.js'
+import {Login,Signup,AuthLayout,Home, EditComedy, EditConcert} from './Components/index.js'
 import Layout from './Components/Layout.jsx'
 import AllEvents from './Components/AllEvents.jsx'
 import Aboutus from './Components/Aboutus.jsx'
@@ -20,6 +20,7 @@ import Comedy from './Components/pages/Comedy.jsx'
 import ComedyView from './Components/pages/ComedyView.jsx'
 import PostTestView from './Components/pages/PostTestView.jsx'
 import Layouts from './AdminPanel/Layouts.jsx'
+import AdminLogin from './AdminPanel/AdminLogin.jsx'
 
 const router = createBrowserRouter([
   {
@@ -72,8 +73,16 @@ const router = createBrowserRouter([
         element : <AuthLayout><PostForm/></AuthLayout>
       },
       {
-        path : '/edit-form',
+        path : '/edit-form/:slug',
         element : <AuthLayout><EditPost/></AuthLayout>
+      },
+      {
+        path : '/edit-concert/:slug',
+        element : <AuthLayout><EditConcert/></AuthLayout>
+      },
+      {
+        path : '/edit-comedy/:slug',
+        element : <AuthLayout><EditComedy/></AuthLayout>
       },
       
     ]
@@ -92,8 +101,27 @@ const router = createBrowserRouter([
   },
   {
     path:'/admin',
-    element:<Layouts/>
-  }
+    element:<AdminLogin/>,
+  },
+      // {
+      //   path:'/dashboard',
+      //   element : <Layouts/>
+      // },
+        {
+          path : '/admin/dashboard',
+          element: <Layouts/>
+        },
+        {
+          path: 'admin/users',
+    
+        },
+        {
+          path: 'admin/post-form',
+          element: <PostForm/>
+        }
+    
+    
+  
 
 ])
 
@@ -102,7 +130,4 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
     <RouterProvider router={router} />
     </Provider>
-   
-
-  </StrictMode>,
 )
