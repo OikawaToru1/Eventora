@@ -52,26 +52,23 @@ function App() {
         <CardSlide/>
       </Container>
 
+      <Banner/>
+
       <Container className='mt-16'>
-        <Title text={"Events for You"}/>
-       
+        <Title text={"All Events"}/>
         <CardSlide showPost={"all"}/>
-        
       </Container>
+
       <Container className='mt-16'>
-        <Title text={"Events near you"}/>
-       
+        <Title text={"Concert Events"}/>
         <ConcertCardSlide showPost={"concert"}/>
-        
       </Container>
+
       <Container className='mt-16'>
-        <Title text={"Comedy"}/>
-       
-        <ComedyCardSlide showPost={"comedy"}/>
-        
+        <Title text={"Comedy Events"}/>
+        <ComedyCardSlide showPost={"comedy"}/>  
       </Container>
       
-      <Banner/>
   
     </div>
   )
