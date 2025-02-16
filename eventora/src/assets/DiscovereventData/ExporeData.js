@@ -23,12 +23,6 @@ const IconsData = [
     },
     {
         id:crypto.randomUUID(),
-        IconImage:hobbieImage,
-        title:'Hobbies',
-        route : '/comedy'
-    },
-    {
-        id:crypto.randomUUID(),
         IconImage:businessImage,
         title:'business',
         route : '/comedy'
@@ -37,33 +31,57 @@ const IconsData = [
         id:crypto.randomUUID(),
         IconImage:nightlifeImage,
         title:'nightLife',
-        route : '/comedy'
+        route : '/concert'
     },
     {
         id:crypto.randomUUID(),
         IconImage:culturalImage,
         title:'Cultural Events',
+         route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:exhibitionImage,
         title:'Exhibition',
+         route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:educationImage,
         title:'Education',
+         route : '/comedy'
     },
     {
         id:crypto.randomUUID(),
         IconImage:sportsImage,
         title:'Sports',
+         route : '/comedy'
     },  
     {
         id:crypto.randomUUID(),
         IconImage:comedyImage,
         title:'Comedy',
+         route : '/comedy'
     },  
+    {
+        id:crypto.randomUUID(),
+        IconImage:educationImage,
+        title:'Education',
+         route : '/comedy'
+    },
+    {
+        id:crypto.randomUUID(),
+        IconImage:exhibitionImage,
+        title:'Exhibition',
+         route : '/comedy'
+    },
+    {
+        id:crypto.randomUUID(),
+        IconImage:comedyImage,
+        title:'Comedy',
+         route : '/comedy'
+    },  
+    
 ]
 
 const getIconsData = () =>{
