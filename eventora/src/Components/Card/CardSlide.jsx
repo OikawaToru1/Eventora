@@ -22,7 +22,6 @@ function CardSlide({showPost}) {
       if(posts)
       {
         setPosts(posts.documents);
-        console.log("post cha")
       }
     })
   },[setPosts,navigate])
