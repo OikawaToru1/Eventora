@@ -8,7 +8,7 @@ function ExploreOptions() {
     return (
             
             <div className=" w-[100%] h-[180px] flex items-center pt-[20px] text-[#2d2d2e] relative ">
-                <div className=" w-[100%] h-[100%] overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar-hide pr-2">
+                <div className=" w-[100%] h-[100%] overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar-hide pr-2 ">
                     {getIcons.map(icon =>(
                         <Link to={icon.route}>
                         <div key={icon.id} className=" h-[100%] inline-block py-7 px-5 mx-2  text-[16px]">
