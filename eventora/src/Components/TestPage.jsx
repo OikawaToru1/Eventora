@@ -46,10 +46,6 @@ function EventDetail() {
                             <span className="text-[17px] font-normal">Price:</span>
                             <span className="font-medium text-[20px]">{"Free"}</span>
                         </div>
-                        <div className=" cursor-pointer bg-white px-4 py-[9px] rounded-[18px] flex justify-center items-center gap-2 text-[20px]">
-                            <span className="font-normal hover:text-red-600"><FaRegHeart /></span>
-                            <span className="font-medium">Remind me</span>
-                        </div>
                     </div>
 
                     <div className="w-[160px] h-[180px] absolute top-11 right-[8%] border border-[#fffdfd] rounded-[15px] md:w-[240px] md:h-[280px]
