@@ -22,6 +22,9 @@ import ConcertPostCard from './ConcertPostCard'
 import PostCard from './PostCard';
 import ConcertCardSlide from  './Card/ConcertCardSlide'
 import ComedyCardSlide from './Card/ComedyCardSlide'
+import EditComedy from './Edit/EditComedy'
+import EditConcert from './Edit/EditConcert'
+import EditPost from './pages/EditPost';
 
 
 export {
@@ -48,5 +51,8 @@ export {
     ConcertPostCard,
     PostCard,
     ConcertCardSlide,
-    ComedyCardSlide
+    ComedyCardSlide,
+    EditComedy,
+    EditConcert,
+    EditPost
 }
