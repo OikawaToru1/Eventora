@@ -29,7 +29,8 @@ export class Service
         eventType,
         price,
         date,
-        url
+        url,
+        ticketUrl
     })
     {
         try 
@@ -51,6 +52,7 @@ export class Service
                         price,
                         date,
                         url,
+                        ticketUrl
                     }
                 )    
             }
@@ -69,7 +71,8 @@ export class Service
                         eventType,
                         price,
                         date,
-                        url
+                        url,
+                        ticketUrl
                     }
                 )    
             }
@@ -88,7 +91,8 @@ export class Service
                         eventType,
                         price,
                         date,
-                        url
+                        url,
+                        ticketUrl
                     }
                 )    
             }
@@ -98,7 +102,7 @@ export class Service
         }
     }
 
-    async deletePost({slug})
+    async deletePost(slug)
     {
         try {
             
@@ -107,38 +111,128 @@ export class Service
                 envConfig.appwriteCollectionId,
                 slug
             )
-            
+            return true;
+
 
         } catch (error) {
             console.log("Error :: DeletePost", error);
             return false;
         }
     }
+    async deleteConcertPost(slug)
+    {
+        try {
+            
+            return await this.database.deleteDocument(
+                envConfig.appwriteDatabaseId,
+                envConfig.appwriteConcertCollectionId,
+                slug
+            )
+            return true;
 
-    async updatePost({
+
+        } catch (error) {
+            console.log("Error  concert :: DeletePost", error);
+            return false;
+        }
+    }
+    async deleteComedyPost(slug)
+    {
+        try {
+            
+            return await this.database.deleteDocument(
+                envConfig.appwriteDatabaseId,
+                envConfig.appwriteComedyCollectionId,
+                slug
+            )
+            return true;
+
+
+        } catch (error) {
+            console.log("Error  comedy :: DeletePost", error);
+            return false;
+        }
+    }
+
+    async updatePost(slug,{
         title,
-        slug,
-        description,
+        content,
         location,
         featuredImage,
         userId,
         status,
+        eventType,
+        price,
+        date,
+        url,
+        ticketUrl
     })
     {
         try {
-            return await this.database.updateDocument(
-                envConfig.appwriteDatabaseId,
-                envConfig.appwriteCollectionId,
-                slug,
-                {
-                    title,
-                    description,
-                    location,
-                    featuredImage,
-                    userId,
-                    status,
-                }
-            )
+            if(eventType === "all")
+            {
+                console.log(userId)
+                return await this.database.updateDocument(
+                    envConfig.appwriteDatabaseId,
+                    envConfig.appwriteCollectionId,
+                    slug,
+                    {
+                        title,
+                        content,
+                        location,
+                        featuredImage,
+                        userId,
+                        status,
+                        eventType,
+                        price,
+                        date,
+                        url,
+                        ticketUrl
+                    }
+                )    
+            }
+            else if(eventType ==="concert"){
+                console.log(userId)
+                return await this.database.updateDocument(
+                    envConfig.appwriteDatabaseId,
+                    envConfig.appwriteConcertCollectionId,
+                    slug,
+                    {
+                        title,
+                        content,
+                        location,
+                        featuredImage,
+                        userId,
+                        status,
+                        eventType,
+                        price,
+                        date,
+                        url,
+                        ticketUrl
+                    }
+                )    
+            }
+            else{
+                console.log(userId)
+                return await this.database.updateDocument(
+                    envConfig.appwriteDatabaseId,
+                    envConfig.appwriteComedyCollectionId,
+                    slug,
+                    {
+                        title,
+                        content,
+                        location,
+                        featuredImage,
+                        userId,
+                        status,
+                        eventType,
+                        price,
+                        date,
+                        url,
+                        ticketUrl
+                    }
+                )    
+            }
         } catch (error) {
             console.log("Error :: updatePost",error);
         }
