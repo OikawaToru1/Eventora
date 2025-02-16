@@ -14,7 +14,7 @@ function Sidebar() {
         </div>
 
         <div className='flex pl-5 text-lg font-medium rounded-xl py-3 pt-6'>
-                <NavLink to={'/admin'} className={({isActive})=> `hover:bg-[#eeeeee] hover:text-[#785bfc] hover:rounded-xl  
+                <NavLink to={'/'} className={({isActive})=> `hover:bg-[#eeeeee] hover:text-[#785bfc] hover:rounded-xl  
                 ${isActive?"bg-[#eeeeee] text-[#785bfc] rounded-xl" : "bg-transparent"}`}>
                     <div className='flex pl-4 items-center w-[240px] gap-3 py-2'>
                     <span><LuLayoutDashboard size={28}/></span>
@@ -23,7 +23,7 @@ function Sidebar() {
                 </NavLink>
         </div>
         <div className='flex pl-5 text-lg font-medium rounded-xl py-1'>
-                <NavLink to={'/about-us'} className={({isActive})=> `hover:bg-[#eeeeee] hover:text-[#785bfc] hover:rounded-xl  
+                <NavLink to={'/'} className={({isActive})=> `hover:bg-[#eeeeee] hover:text-[#785bfc] hover:rounded-xl  
                 ${isActive?"bg-[#eeeeee] text-[#785bfc] rounded-xl" : "bg-transparent"}`}>
                     <div className='flex pl-4 items-center w-[240px] gap-3 py-2'>
                     <span><FaRegUser size={28}/></span>
@@ -32,7 +32,7 @@ function Sidebar() {
                 </NavLink>
         </div>
         <div className='flex pl-5 text-lg font-medium rounded-xl py-1'>
-                <NavLink to={'/add-event'} className={({isActive})=> `hover:bg-[#eeeeee] hover:text-[#785bfc] hover:rounded-xl  
+                <NavLink to={'/post-form'} className={({isActive})=> `hover:bg-[#eeeeee] hover:text-[#785bfc] hover:rounded-xl  
                 ${isActive?"bg-[#eeeeee] text-[#785bfc] rounded-xl" : "bg-transparent"}`}>
                     <div className='flex pl-4 items-center w-[240px] gap-3 py-2'>
                     <span><FaPlus size={28}/></span>
@@ -42,7 +42,7 @@ function Sidebar() {
         </div>
         
         <div className='flex pl-5 text-lg font-medium rounded-xl py-3'>
-                <NavLink to={'/'} className={({isActive})=> `hover:text-[#ff3030] hover:bg-[#eeeeee] hover:rounded-xl  
+                <NavLink to={'/home'} className={({isActive})=> `hover:text-[#ff3030] hover:bg-[#eeeeee] hover:rounded-xl  
                 ${isActive?"text-[#ff3030] bg-[#eeeeee] rounded-xl" : "bg-transparent"}`}>
                     <div className='flex pl-4 items-center w-[240px] gap-3 py-2'>
                     <span><MdLogout size={28}/></span>

@@ -24,7 +24,7 @@ function AdminLogin() {
           dispatch(authLogin(userData));
           console.log("I got the data yayyyy");
           console.log(userData.$id);
-          navigate("/home");
+          navigate("/admin/dashboard");
         } else {
           console.log("No user data");
         }
