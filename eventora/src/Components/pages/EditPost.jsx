@@ -11,7 +11,7 @@ function EditPost() {
     useEffect(()=>{
         if(slug)
         {
-            appwriteService.getPost(slug)
+            appwriteService.getPost({slug})
             .then((post)=>{
                 if(post)
                 {
@@ -20,7 +20,7 @@ function EditPost() {
             })
         }
         else{
-            navigate('/')
+            navigate('/home')
         }
     },[slug,navigate])
   return post? (<div>
