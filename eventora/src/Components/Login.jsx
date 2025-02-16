@@ -46,7 +46,7 @@ function Login() {
 
         <div className=' grid justify-items-center place-items-center'>
             <div className='absolute top-10 text-2xl font-semibold text-white'>!! Welcome Back !!</div>
-            <div className='absolute top-24 w-[80vw] h-[60vh] sm:w-[60vw] lg:w-[40vw] rounded-2xl bg-[#7e7e7e50] border border-gray-500 '>
+            <div className='absolute  top-24 w-[80vw] min-h-[52vh] pt-8 sm:w-[60vw] lg:w-[40vw] rounded-2xl bg-[#7e7e7e50] border border-gray-500 '>
                 <form onSubmit={handleSubmit(login)}>
                     <Input
                         label="Email"

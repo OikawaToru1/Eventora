@@ -36,7 +36,7 @@ function Signup() {
             <div className='signup-background relative md:bg-center'></div>
             <div className=' grid justify-items-center place-items-center'>
             <div className='absolute top-10 text-2xl font-semibold text-white'>Create an account to continue!!</div>
-                <div className='absolute top-24 pt-1 w-[80vw] h-[70vh] sm:w-[60vw] lg:w-[40vw] rounded-2xl bg-[#7e7e7e50] z-10 border border-gray-500 '>
+                <div className='absolute   top-24  w-[80vw] min-h-[52vh] sm:w-[60vw] lg:w-[40vw] rounded-2xl bg-[#7e7e7e50] z-10 border border-gray-500 '>
                     <form onSubmit={handleSubmit(Signup)}>
                         <Input
                             className='block text-white'
