@@ -22,8 +22,8 @@ function Header() {
  
 
     return (
-        <div className='header sticky top-0 py-2 flex h-18 w-[100%] justify-between px-6 items-center z-30 bg-white text-[19px]'>
-            <div className=' xl:pl-6 lg:pl-3 xl:text-[21px] pt-2'>
+        <div className='header sticky top-0 py-2 flex h-18 w-[100%] justify-between items-center z-30 bg-white text-[19px]'>
+            <div className=' xl:pl-10 lg:pl-3 xl:text-[21px] pt-2'>
                 <Link to={'/home'}>
                     <img src={Logo} alt="Eventora" className="w-[60px] border-none " />
                 </Link>
