@@ -18,13 +18,11 @@ import AboutEvent from "../AboutEvent.jsx";
 
 function Post(){
   const [img, setImg] = useState(null)
+  const [isAuthor,setIsAuthor] = useState(false)
   const [post, setPost] = useState()
   const {slug} = useParams()
   const navigate = useNavigate()
-  const userData = useSelector((state)=> state.auth.userData);
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
-  console.log(`is author : ${isAuthor}`)  
-//   console.log("post user id",post.userId, userData.$id )
+  const userData = useSelector(state=> state.auth.userData);
 
   useEffect(()=>{
     if(slug)
@@ -40,7 +38,7 @@ function Post(){
   },[slug,navigate]);
 
   const deletePost = ()=>{
-    appwriteService.deletePost(post.$id)
+    appwriteService.deleteComedyPost(post.$id)
     .then((status)=>{
       if(status){
         appwriteService.deleteFile(post.featuredImage);
@@ -48,13 +46,28 @@ function Post(){
       }
     })
   }
-  if(post)
-  {
-    appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)})
-    console.log(post.userId)
-    console.log(post.url);
+  // if(post)
+  // {
+  //   appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)})
+  //   console.log(post.userId)
+  //   console.log(post.url);
 
-  }
+  // }
+  useEffect(()=>{
+    if(post)
+    {
+      appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)});
+
+    }
+  },[post])
+
+  useEffect(()=>{
+    if(post && userData)
+    {
+      setIsAuthor(post.userId === userData.$id);
+
+    }
+  },[post, userData])
   
   
   return post ? (
@@ -63,16 +76,16 @@ function Post(){
         {isAuthor && (
                     
                         <div className="flex gap-8 justify-end pr-6 ">
-                        <Link to={`/edit-post/${post.$id}`}>
-                            <div className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
+                        <Link to={`/edit-comedy/${post.$id}`}>
+                            <button className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
    rounded-3xl mt-2 font-medium hover:text-[#9232b8b4] hover:bg-gradient-to-r hover:from-[#ffffff] hover:to-[#ffffff] hover:border hover:border-[#9232b8b4]">
                                 Edit
-                            </div>
+                            </button>
                         </Link>
-                        <div className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
+                        <button onClick={deletePost} className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
    rounded-3xl mt-2 font-medium hover:text-[#9232b8b4] hover:bg-gradient-to-r hover:from-[#ffffff] hover:to-[#ffffff] hover:border hover:border-[#9232b8b4]">
                                 Delete
-                            </div>
+                            </button>
                         </div>
                 
                 )}
@@ -97,6 +110,7 @@ function Post(){
                             <span><FaRegClock size={24} /></span>
                             <span className="pt-[6px] lowercase">{"7pm onwards"}</span></div>
                         <div className="flex items-center gap-[6px] cursor-pointer">
+
                             <span><Link to={post.url}><IoLocationOutline size={24} /></Link></span>
                             <span className="pt-[6px]">{post.location}</span>
                         </div>
@@ -110,10 +124,9 @@ function Post(){
                             <span className="text-[17px] font-normal">Price(Rs):</span>
                             <span className="font-medium text-[20px]">{post.price ? post.price : "Free"}</span>
                         </div>
-                        <div className=" cursor-pointer bg-white px-4 py-[9px] rounded-[18px] flex justify-center items-center gap-2 text-[20px]">
-                            <span className="font-normal hover:text-red-600"><FaRegHeart /></span>
-                            <span className="font-medium">Remind me</span>
-                        </div>
+                        {post.ticketUrl ? <Link to={post.ticketUrl}><div className="cursor-pointer bg-white px-[32px] py-[9px] rounded-[18px] flex justify-center items-center gap-2">
+                            <span className="text-[17px] font-normal">Ticket here</span>
+                        </div></Link> : ""}
                     </div>
 
                     <div className="w-[160px] h-[180px] absolute top-11 right-[8%] border border-[#fffdfd] rounded-[15px] md:w-[240px] md:h-[280px]

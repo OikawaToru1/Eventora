@@ -13,6 +13,8 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FiShare2 } from "react-icons/fi";
 import EventOrganized from "../EventOrganized.jsx";
 import AboutEvent from "../AboutEvent.jsx";
+import { isExpired } from "./dateValidate.js";
+import { copyToClipboard } from "./copyToClipboard.js";
 
 
 function Post(){
@@ -22,7 +24,7 @@ function Post(){
   const {slug} = useParams()
   const navigate = useNavigate()
   const userData = useSelector((state)=> state.auth.userData);
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const [isAuthor,setIsAuthor] = useState(false)
 
   useEffect(()=>{
     if(slug)
@@ -46,27 +48,42 @@ function Post(){
       }
     })
   }
-  if(post)
-  {
-    appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)})
-  }
+  useEffect(()=>{
+    if(post)
+    {
+      appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)});
+
+    }
+  },[post])
+
+  useEffect(()=>{
+    if(post && userData)
+    {
+      setIsAuthor(post.userId === userData.$id);
+
+    }
+  },[post, userData])
   
   
   return post ? (
 
     <div className="w-[100vw]">
         {isAuthor && (
-                    <div className="absolute right-6 top-6">
-                        <Link to={`/edit-post/${post.$id}`}>
-                            <Button bgColor="bg-green-500" className="mr-3">
-                                Edit
-                            </Button>
-                        </Link>
-                        <Button bgColor="bg-red-500" onClick={deletePost}>
+                    
+                    <div className="flex gap-8 justify-end pr-6 ">
+                    <Link to={`/edit-form/${post.$id}`}>
+                        <button className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
+rounded-3xl mt-2 font-medium hover:text-[#9232b8b4] hover:bg-gradient-to-r hover:from-[#ffffff] hover:to-[#ffffff] hover:border hover:border-[#9232b8b4]">
+                            Edit
+                        </button>
+                    </Link>
+                    <button onClick={deletePost} className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
+rounded-3xl mt-2 font-medium hover:text-[#9232b8b4] hover:bg-gradient-to-r hover:from-[#ffffff] hover:to-[#ffffff] hover:border hover:border-[#9232b8b4]">
                             Delete
-                        </Button>
+                        </button>
                     </div>
-                )}
+            
+            )}
          
 
             <div className="mt-8 w-[100%] h-[400px] relative" >
@@ -79,21 +96,27 @@ function Post(){
                         </div>
                         <div className="flex items-center gap-[6px] cursor-pointer ">
                             <span><MdOutlineDateRange size={26} /></span>
-                            <span className="pt-[6px]">{"December 22"}</span>
+                            <span className="pt-[6px]">{post.date ? post.date :"December 22"}</span>
                         </div>
                         <div className="flex items-center gap-[6px] cursor-pointer">
                             <span><FaRegClock size={24} /></span>
                             <span className="pt-[6px] lowercase">{"7pm onwards"}</span></div>
                         <div className="flex items-center gap-[6px] cursor-pointer">
                             <span><IoLocationOutline size={24} /></span>
-                            <span className="pt-[6px]">{"Lakeside, Pokhara"}</span>
+                            <span className="pt-[6px]">{post.location}</span>
+                        </div>
+                        <div className="flex items-center gap-[6px] cursor-pointer">
+                        {isExpired(post.date) &&<div><span className='bg-red-700 p-1 rounded-md'>Expired Event</span></div>}
                         </div>
                     </div>
-                    <div className="absolute top-[70%] left-[10%] flex gap-10">
+                    <div className="absolute top-[78%] left-[10%] flex gap-10">
                         <div className="cursor-pointer bg-white px-[32px] py-[9px] rounded-[18px] flex justify-center items-center gap-2">
-                            <span className="text-[17px] font-normal">Price:</span>
-                            <span className="font-medium text-[20px]">{"Free"}</span>
+                            <span className="text-[17px] font-normal">Price(Rs):</span>
+                            <span className="font-medium text-[20px]">{post.price ? post.price : "Free"}</span>
                         </div>
+                        {post.ticketUrl ? <Link to={post.ticketUrl}><div className="cursor-pointer bg-white px-[32px] py-[9px] rounded-[18px] flex justify-center items-center gap-2">
+                            <span className="text-[17px] font-normal">Ticket here</span>
+                        </div></Link> : ""}
                         
                     </div>
 
@@ -101,9 +124,9 @@ function Post(){
                 md:right-[4%]">
                         <img src={img} alt={post.title}  className="object-fit w-[100%] h-[100%] rounded-[15px]" />
                     </div>
-                    <div className="flex items-center gap-2 absolute top-[60%] md:top-[88%] right-[8%] md:right-[5.5%] text-white md:text-xl font-medium">
+                   <div className="flex items-center gap-2 absolute top-[60%] md:top-[88%] right-[8%] md:right-[5.5%] text-white md:text-xl font-medium">
                         <span>Share with others:</span>
-                        <span className="cursor-pointer text-[18px] md:text-3xl"><FiShare2 /></span>
+                       <button onClick={()=> copyToClipboard(window.location.href)}> <span className="cursor-pointer text-[18px] md:text-3xl hover:bg-red-800 "><FiShare2 /></span></button>
                     </div>
                 </div>
             </div>
