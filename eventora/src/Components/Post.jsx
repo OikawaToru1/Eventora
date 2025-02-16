@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from '../appwrite/config'
 import '../App.css'
-import {Button,Container} from '../Components/index'
+import {Container} from '../Components/index'
 import parse from 'html-react-parser'
 import { useSelector } from "react-redux";
 
@@ -15,7 +15,7 @@ function Post(){
   const {slug} = useParams()
   const navigate = useNavigate()
   const userData = useSelector((state)=> state.auth.userData);
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const [isAuthor, setIsAuthor] = useState(false);
 
   useEffect(()=>{
     if(slug)
@@ -39,10 +39,25 @@ function Post(){
       }
     })
   }
-  if(post)
-  {
-    appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)})
-  }
+  // if(post)
+  // {
+  //   appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)});
+  //   userData && (post.userId === userData.$id) ? setIsAuthor(true): setIsAuthor(false);
+  // }
+
+  useEffect(()=>{
+    if(post)
+    {
+      appwriteService.getFilePreview(post.featuredImage).then((res)=> {setImg(res.href)});
+    }
+  },[post])
+
+  useEffect(()=>{
+    if(post && userData)
+    {
+      setIsAuthor(post.userId === userData.$id);
+    }
+  },[post, userData])
   
   
   return post ? (
@@ -55,18 +70,22 @@ function Post(){
                         className="rounded-xl"
                     />
 
-                {isAuthor && (
-                    <div className="absolute right-6 top-6">
-                        <Link to={`/edit-post/${post.$id}`}>
-                            <Button bgColor="bg-green-500" className="mr-3">
-                                Edit
-                            </Button>
-                        </Link>
-                        <Button bgColor="bg-red-500" onClick={deletePost}>
+{isAuthor && (
+                    
+                    <div className="flex gap-8 justify-end pr-6 ">
+                    <Link to={`/edit-form/${post.$id}`}>
+                        <button className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
+rounded-3xl mt-2 font-medium hover:text-[#9232b8b4] hover:bg-gradient-to-r hover:from-[#ffffff] hover:to-[#ffffff] hover:border hover:border-[#9232b8b4]">
+                            Edit
+                        </button>
+                    </Link>
+                    <button onClick={deletePost} className="text-center px-3 w-[120px] py-2 bg-gradient-to-r from-[#9232b8b4] to-[#cb7deb] text-white
+rounded-3xl mt-2 font-medium hover:text-[#9232b8b4] hover:bg-gradient-to-r hover:from-[#ffffff] hover:to-[#ffffff] hover:border hover:border-[#9232b8b4]">
                             Delete
-                        </Button>
+                        </button>
                     </div>
-                )}
+            
+            )}
             </div>
             <div className="w-full mb-6">
                 <h1 className="text-2xl font-bold">{post.title}</h1>
@@ -76,7 +95,7 @@ function Post(){
                 </div>
         </Container>
     </div>
-) : <h1>COuldnt find</h1>;
+) : <h1>Couldn't find post</h1>;
 }
 
 export default Post;
